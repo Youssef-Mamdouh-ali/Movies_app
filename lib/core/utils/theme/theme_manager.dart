@@ -56,5 +56,15 @@ abstract class ThemeManager {
       color: AppColors.primaryColor,
       thickness: 1,
     ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.darkColor,
+      elevation: 0,
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+        fontFamily: 'Cairo',
+        fontWeight: FontWeight.w500,
+        color: AppColors.primaryColor,
+      ),
+    ),
   );
 }
