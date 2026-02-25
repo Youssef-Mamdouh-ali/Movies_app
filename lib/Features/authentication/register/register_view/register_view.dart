@@ -45,10 +45,10 @@ class _RegisterViewState extends State<RegisterView> {
         ),
       ),
       body: SingleChildScrollView(
-        child:
-        Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            
             CustomCarouselSliderWidget(
               items: RegisterDataModel.registerList.map((avater) {
                 return Container(
@@ -71,9 +71,11 @@ class _RegisterViewState extends State<RegisterView> {
                 });
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(AppString.avatar, style: theme.textTheme.bodyLarge),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
+
+            
             CustomTextFormFieldWidget(
               text: AppString.name,
               customPrefixWidget: SvgPicture.asset(
@@ -82,7 +84,7 @@ class _RegisterViewState extends State<RegisterView> {
                 height: 24,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             CustomTextFormFieldWidget(
               text: AppString.email,
               customPrefixWidget: SvgPicture.asset(
@@ -91,7 +93,7 @@ class _RegisterViewState extends State<RegisterView> {
                 height: 24,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             CustomTextFormFieldWidget(
               text: AppString.password,
               isPassword: isActivePassword,
@@ -107,18 +109,11 @@ class _RegisterViewState extends State<RegisterView> {
                   });
                 },
                 child: isActivePassword
-                    ? SvgPicture.asset(
-                  AppAssets.eyeIcon,
-                  width: 20,
-                  height: 20,
-                )
-                    : Icon(
-                  Icons.remove_red_eye_sharp,
-                  color: AppColors.whiteColor,
-                ),
+                    ? SvgPicture.asset(AppAssets.eyeIcon, width: 20, height: 20)
+                    : Icon(Icons.remove_red_eye_sharp, color: AppColors.whiteColor),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             CustomTextFormFieldWidget(
               text: AppString.confirmPassword,
               isPassword: isActiveConfirmPassword,
@@ -134,18 +129,11 @@ class _RegisterViewState extends State<RegisterView> {
                   });
                 },
                 child: isActiveConfirmPassword
-                    ? SvgPicture.asset(
-                  AppAssets.eyeIcon,
-                  width: 20,
-                  height: 20,
-                )
-                    : Icon(
-                  Icons.remove_red_eye_sharp,
-                  color: AppColors.whiteColor,
-                ),
+                    ? SvgPicture.asset(AppAssets.eyeIcon, width: 20, height: 20)
+                    : Icon(Icons.remove_red_eye_sharp, color: AppColors.whiteColor),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             CustomTextFormFieldWidget(
               text: AppString.phoneNumber,
               customPrefixWidget: SvgPicture.asset(
@@ -154,7 +142,8 @@ class _RegisterViewState extends State<RegisterView> {
                 height: 24,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
+
             Row(
               children: [
                 Expanded(
@@ -171,7 +160,9 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ],
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
+
+            
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
@@ -184,13 +175,10 @@ class _RegisterViewState extends State<RegisterView> {
                     WidgetSpan(
                       child: Bounceable(
                         onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            PagesRoutesName.loginView,
-                          );
+                          Navigator.pushNamed(context, PagesRoutesName.loginView);
                         },
                         child: Text(
-                          AppString.login,
+                          "  ${AppString.login}",
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: AppColors.primaryColor,
                           ),
@@ -201,24 +189,18 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ),
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
+
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomLanguageSwitchWidget(
                   onTapLeft: () {
-                    if (isArabic) {
-                      setState(() {
-                        isArabic = !isArabic;
-                      });
-                    }
+                    if (isArabic) setState(() => isArabic = !isArabic);
                   },
                   onTapRight: () {
-                    if (!isArabic) {
-                      setState(() {
-                        isArabic = !isArabic;
-                      });
-                    }
+                    if (!isArabic) setState(() => isArabic = !isArabic);
                   },
                   isArabic: isArabic,
                 ),
@@ -235,7 +217,3 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
-
-
-
-

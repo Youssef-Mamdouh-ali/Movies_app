@@ -93,6 +93,7 @@ class _LogInViewState extends State<LogInView> {
                 Expanded(
                   child: CustomElevatedButtonWidget(
                     onPressed: () {
+                      ///TODO : Edit this navigate only to check
                    Navigator.pushNamed(context, PagesRoutesName.updateProfileScreen);
                     },
                     customChildWidget: Text(

@@ -12,7 +12,7 @@ class AppString {
   static const String or = "OR";
   static const String loginWithGoogle = "Login with Google";
   static const String confirmPassword = "Confirm your password";
-  static const String alreadyHaveAccount = "Already have an account ? ";
+  static const String alreadyHaveAccount = "Already have an account?";
   static const String resetPassword = "Reset password";
   static const String register = "Register";
   static const String avatar = "Avatar";
