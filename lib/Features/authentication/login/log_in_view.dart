@@ -188,7 +188,13 @@ class _LogInViewState extends State<LogInView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomLanguageSwitchWidget(isArabic: isArabic),
+                CustomLanguageSwitchWidget(isArabic: isArabic,
+                onTapLeft: () {
+                    if (isArabic) setState(() => isArabic = !isArabic);
+                  },
+                  onTapRight: () {
+                    if (!isArabic) setState(() => isArabic = !isArabic);
+                  },),
               ],
             )
           ],
