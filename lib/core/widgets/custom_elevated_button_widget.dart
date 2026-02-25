@@ -5,12 +5,14 @@ class CustomElevatedButtonWidget extends StatelessWidget {
   final Widget? customChildWidget;
   final void Function()? onPressed;
   final Color? backgroundColor;
+  final Color? boarderColor;
 
   const CustomElevatedButtonWidget({
     super.key,
     this.onPressed,
     this.customChildWidget,
     this.backgroundColor,
+    this.boarderColor
   });
 
   @override
@@ -24,7 +26,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
         padding: EdgeInsets.all(16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: AppColors.primaryColor),
+          side: BorderSide(color: boarderColor ??AppColors.primaryColor),
         ),
       ),
       child: customChildWidget,
