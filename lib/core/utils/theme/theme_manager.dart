@@ -55,10 +55,11 @@ abstract class ThemeManager {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.darkColor,
       elevation: 0,
+      centerTitle: true,
       titleTextStyle: TextStyle(
         fontFamily: 'Cairo',
         fontWeight: FontWeight.w700,
-        color: AppColors.whiteColor,
+        color: AppColors.primaryColor,
         fontSize: 20,
       ),
     ),
