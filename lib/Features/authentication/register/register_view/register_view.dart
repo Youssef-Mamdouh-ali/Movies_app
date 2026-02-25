@@ -22,7 +22,8 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   int selectedIndex = 1;
-  bool isActive = true;
+  bool isActivePassword = true;
+  bool isActiveConfirmPassword = true;
   bool isArabic = true;
 
   @override
@@ -93,7 +94,7 @@ class _RegisterViewState extends State<RegisterView> {
             SizedBox(height: 24),
             CustomTextFormFieldWidget(
               text: AppString.password,
-              isPassword: isActive,
+              isPassword: isActivePassword,
               customPrefixWidget: SvgPicture.asset(
                 AppAssets.passwordIcon,
                 width: 24,
@@ -102,10 +103,10 @@ class _RegisterViewState extends State<RegisterView> {
               customSuffixWidget: InkWell(
                 onTap: () {
                   setState(() {
-                    isActive = !isActive;
+                    isActivePassword = !isActivePassword;
                   });
                 },
-                child: isActive
+                child: isActivePassword
                     ? SvgPicture.asset(
                   AppAssets.eyeIcon,
                   width: 20,
@@ -120,7 +121,7 @@ class _RegisterViewState extends State<RegisterView> {
             SizedBox(height: 24),
             CustomTextFormFieldWidget(
               text: AppString.confirmPassword,
-              isPassword: isActive,
+              isPassword: isActiveConfirmPassword,
               customPrefixWidget: SvgPicture.asset(
                 AppAssets.passwordIcon,
                 width: 24,
@@ -129,10 +130,10 @@ class _RegisterViewState extends State<RegisterView> {
               customSuffixWidget: InkWell(
                 onTap: () {
                   setState(() {
-                    isActive = !isActive;
+                    isActiveConfirmPassword = !isActiveConfirmPassword;
                   });
                 },
-                child: isActive
+                child: isActiveConfirmPassword
                     ? SvgPicture.asset(
                   AppAssets.eyeIcon,
                   width: 20,
@@ -226,7 +227,7 @@ class _RegisterViewState extends State<RegisterView> {
           ],
         ).setHorizontalAndVerticalPadding(
           context,
-          16,
+          18,
           8,
           enableMediaQuery: false,
         ),
