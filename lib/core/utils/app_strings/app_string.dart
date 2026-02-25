@@ -19,4 +19,6 @@ class AppString {
   static const String name = "Name";
   static const String phoneNumber = "Phone Number";
   static const String headerCreateAccount = "Create your account";
+  static const String verifyEmail = "Verify email";
+
 }

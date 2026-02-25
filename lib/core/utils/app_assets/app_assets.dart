@@ -14,5 +14,7 @@ class AppAssets {
   static const String googleIcon = "assets/icons/google_icn.svg" ;
   static const String passwordIcon = "assets/icons/password_icn.svg" ;
   static const String usaFlagIcon = "assets/icons/usa_flag_icn.svg" ;
+  static const String forgetPassword = "assets/images/Forget_password.png" ;
+
 
 }
