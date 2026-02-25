@@ -9,7 +9,7 @@ import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 import 'package:movies_app_project/core/widgets/custom_elevated_button_widget.dart';
 import 'package:movies_app_project/core/widgets/custom_text_form_field_widget.dart';
 
-import 'widget/custom_language_switch_widget.dart';
+import '../../../core/widgets/custom_language_switch_widget.dart';
 
 class LogInView extends StatefulWidget {
   const LogInView({super.key});
