@@ -3,6 +3,7 @@ import 'package:movies_app_project/Features/authentication/forget_password/forge
 import 'package:movies_app_project/Features/authentication/login/log_in_view.dart';
 import 'package:movies_app_project/Features/authentication/register/register_view.dart';
 import 'package:movies_app_project/Features/onBoarding/view/on_boarding_screen.dart';
+import 'package:movies_app_project/Features/update_profile/update_profile_screen.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 
 abstract class AppRouter {
@@ -25,6 +26,11 @@ abstract class AppRouter {
         case PagesRoutesName.onBoardingView:
         return MaterialPageRoute(
           builder: (context) => OnBoardingScreen(),
+        );
+
+      case PagesRoutesName.updateProfileScreen:
+        return MaterialPageRoute(
+          builder: (context) => UpdateProfileScreen(),
         );
 
     default:

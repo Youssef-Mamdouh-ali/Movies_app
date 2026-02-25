@@ -92,7 +92,10 @@ class _LogInViewState extends State<LogInView> {
               children: [
                 Expanded(
                   child: CustomElevatedButtonWidget(
-                    onPressed: () {},
+                    onPressed: () {
+                      ///TODO : Edit this navigate only to check
+                   Navigator.pushNamed(context, PagesRoutesName.updateProfileScreen);
+                    },
                     customChildWidget: Text(
                       AppString.login,
                       style: theme.textTheme.titleLarge?.copyWith(
