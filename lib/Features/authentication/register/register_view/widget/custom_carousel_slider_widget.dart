@@ -11,13 +11,13 @@ class CustomCarouselSliderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 170,
+      height: 160,
       child: CarouselSlider(
         items: items,
         options: CarouselOptions(
           height: 160,
           aspectRatio: 16 / 9,
-          viewportFraction: 0.45,
+          viewportFraction: 0.35,
           initialPage: 1,
           enableInfiniteScroll: true,
           reverse: false,
@@ -26,7 +26,8 @@ class CustomCarouselSliderWidget extends StatelessWidget {
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.easeInOut,
           enlargeCenterPage: true,
-          enlargeFactor: 0.3,
+          enlargeStrategy: CenterPageEnlargeStrategy.scale,
+          enlargeFactor: 0.37,
           onPageChanged: onPageChanged,
           scrollDirection: Axis.horizontal,
         ),
