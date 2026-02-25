@@ -52,6 +52,16 @@ abstract class ThemeManager {
         borderRadius: BorderRadius.circular(16.0),
       ),
     ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.darkColor,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        fontFamily: 'Cairo',
+        fontWeight: FontWeight.w700,
+        color: AppColors.whiteColor,
+        fontSize: 20,
+      ),
+    ),
     dividerTheme: DividerThemeData(
       color: AppColors.primaryColor,
       thickness: 1,
