@@ -67,5 +67,6 @@ abstract class ThemeManager {
       color: AppColors.primaryColor,
       thickness: 1,
     ),
+   
   );
 }

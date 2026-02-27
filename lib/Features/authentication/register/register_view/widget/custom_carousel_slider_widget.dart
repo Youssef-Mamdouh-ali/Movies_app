@@ -27,7 +27,6 @@ class CustomCarouselSliderWidget extends StatelessWidget {
           autoPlayCurve: Curves.easeInOut,
           enlargeCenterPage: true,
           enlargeFactor: 0.36,
-          enlargeStrategy: CenterPageEnlargeStrategy.scale,
           onPageChanged: onPageChanged,
           scrollDirection: Axis.horizontal,
         ),
