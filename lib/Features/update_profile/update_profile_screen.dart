@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
@@ -31,10 +32,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.darkColor,
-        leading: Icon(
-          Icons.arrow_back,
-          color: AppColors.primaryColor,
-          size: 26,
+        leading: Bounceable(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColors.primaryColor,
+            size: 26,
+          ),
         ),
         title: Text(
           "Pick Avatar",

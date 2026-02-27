@@ -55,13 +55,16 @@ class CustomScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            Text(
-                              onBoardingModel.description ?? '',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.white30,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20,
+                            Visibility(
+                              visible: onBoardingModel.description !=null,
+                              child: Text(
+                                onBoardingModel.description ?? '',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white30,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                             SizedBox(height: 24),

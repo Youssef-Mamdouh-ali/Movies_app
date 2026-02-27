@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
-
+import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
+import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 
 import '../../../core/utils/theme/app_colors.dart';
 import '../../../core/widgets/custom_button.dart';
+import '../../../core/widgets/custom_elevated_button_widget.dart';
 import '../model/model.dart';
 import '../widget/custom_screen.dart';
 
@@ -29,6 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -43,11 +46,24 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               },
               children: [
                 CustomScreen(
-                  button: CustomElevatedButton(
-                    text: 'Explore Now',
-                    onPressed: () {
-                      onNext(selectedPage);
-                    },
+                  button: Row(
+                    children: [
+                      Expanded(
+                        child: CustomElevatedButtonWidget(
+                          customChildWidget: Text(
+                            AppString.next,
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              color: AppColors.darkColor,
+                              fontSize: 20,
+                            ),
+                          ),
+
+                          onPressed: () {
+                            onNext(selectedPage);
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   onBoardingModel: OnBoardingModel(
                     tittle: "Discover Movies",
@@ -61,7 +77,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -79,14 +95,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
                   ),
                   secondButton: CustomElevatedButton(
                     color: Colors.transparent,
-                    text: 'Back',
+                    text: AppString.back,
                     textcolor: AppColors.primaryColor,
                     onPressed: () {
                       onArrowBack(selectedPage);
@@ -96,7 +112,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     tittle: "Explore All Genres",
                     description:
                         "Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.",
-                    image:AppAssets.onboarding3,
+                    image: AppAssets.onboarding3,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -105,14 +121,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
                   ),
                   secondButton: CustomElevatedButton(
                     color: Colors.transparent,
-                    text: 'Back',
+                    text: AppString.back,
                     textcolor: AppColors.primaryColor,
                     onPressed: () {
                       onArrowBack(selectedPage);
@@ -131,14 +147,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
                   ),
                   secondButton: CustomElevatedButton(
                     color: Colors.transparent,
-                    text: 'Back',
+                    text: AppString.back,
                     textcolor: AppColors.primaryColor,
                     onPressed: () {
                       onArrowBack(selectedPage);
@@ -157,14 +173,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Finish',
+                    text: AppString.finish,
                     onPressed: () {
                       onNext(selectedPage);
                     },
                   ),
                   secondButton: CustomElevatedButton(
                     color: Colors.transparent,
-                    text: 'Back',
+                    text: AppString.back,
                     textcolor: AppColors.primaryColor,
                     onPressed: () {
                       onArrowBack(selectedPage);
@@ -172,6 +188,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                   onBoardingModel: OnBoardingModel(
                     tittle: "Start Watching Now",
+                    // description: 'hdasfvha',
                     image: AppAssets.onboarding6,
                     onPressed: () {
                       onNext(selectedPage);
@@ -181,7 +198,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ],
             ),
-        
+
             /// BACK ARROW
             if (selectedPage > 0)
               Bounceable(
@@ -219,7 +236,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, PagesRoutesName.loginView);
     }
     setState(() {});
   }
