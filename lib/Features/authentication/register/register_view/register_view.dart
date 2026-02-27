@@ -52,14 +52,14 @@ class _RegisterViewState extends State<RegisterView> {
                 CustomCarouselSliderWidget(
                   items: RegisterDataModel.registerList.map((avater) {
                     return Container(
-                      width: 125,
+                      width: 160,
                       height: 160,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       child: ClipOval(
                         child: Image.asset(
                           avater.imagePath,
                           fit: BoxFit.cover,
-                          width: 125,
+                          width: 160,
                           height: 160,
                         ),
                       ),
