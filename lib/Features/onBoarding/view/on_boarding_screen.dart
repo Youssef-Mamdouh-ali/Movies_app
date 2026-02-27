@@ -45,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Explore Now',
+                    text: AppString.exploreNow,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -62,7 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
