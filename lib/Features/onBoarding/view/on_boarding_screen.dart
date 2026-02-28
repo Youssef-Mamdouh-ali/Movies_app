@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
+import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 
 
 import '../../../core/utils/theme/app_colors.dart';
@@ -44,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Explore Now',
+                    text: AppString.exploreNow,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -61,7 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -219,7 +220,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, PagesRoutesName.loginView);
     }
     setState(() {});
   }

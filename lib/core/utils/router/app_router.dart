@@ -22,6 +22,7 @@ abstract class AppRouter {
     );
       case PagesRoutesName.registerView:
         return MaterialPageRoute(
+
           builder: (context) => RegisterView(),
         );
       case PagesRoutesName.forgetPasswordView:
@@ -60,7 +61,7 @@ abstract class AppRouter {
 
     default:
     return MaterialPageRoute(
-    builder: (context) => LogInView(),
+    builder: (context) => RegisterView(),
     );
 
     }
