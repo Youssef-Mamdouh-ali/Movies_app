@@ -14,16 +14,20 @@ class AppAssets {
   static const String googleIcon = "assets/icons/google_icn.svg" ;
   static const String passwordIcon = "assets/icons/password_icn.svg" ;
   static const String usaFlagIcon = "assets/icons/usa_flag_icn.svg" ;
-  static const String forgetPassword = "assets/images/Forget_password.png" ;
+  static const String beardedGamerProfileBackgroundImg = "assets/images/bearded_gamer_profile_background_img.png" ;
+  static const String beardedManProfileBackgroundImg = "assets/images/bearded_man_profile_background_img.png" ;
+  static const String catEarsFemaleProfileBackgroundImg = "assets/images/cat_ears_female_profile_background_img.png" ;
+  static const String blondeFemaleProfileBackgroundImg = "assets/images/bearded_man_profile_background_img.png" ;
+  static const String coolGamerProfileBackgroundImg = "assets/images/cool_gamer_profile_background_img.png" ;
+  static const String gamerGirlProfileBackgroundImg = "assets/images/gamer_girl_profile_background_img.png" ;
+  static const String gentlemanProfileBackgroundImg = "assets/images/gentleman_profile_background_img.png" ;
+  static const String hoodieBoyProfileBackgroundImg = "assets/images/hoodie_boy_profile_background_img.png" ;
+  static const String redHeadFemaleProfileBackgroundImg = "assets/images/red_head_female_profile_background_img.png" ;
   static const String nameIcon = "assets/icons/name_icn.svg" ;
   static const String phoneIcon = "assets/icons/phone_icn.svg" ;
-  static const String beardedGamerProfileBackgroundImg = "assets/images/bearded_gamer_profile_background_img.png" ;
-  static const String coolGamerProfileBackgroundImg = "assets/images/cool_gamer_profile_background_img.png" ;
-  static const String blondeFemaleProfileBackgroundImg = "assets/images/blonde_female_profile_background_img.png" ;
-  static const String beardedManProfileBackgroundImg = "assets/images/bearded_man_profile_background_img.png" ;
-  static const String redHeadFemaleProfileBackgroundImg = "assets/images/red_head_female_profile_background_img.png" ;
-  static const String gentlemanProfileBackgroundImg = "assets/images/gentleman_profile_background_img.png" ;
-  static const String catEarsFemaleProfileBackgroundImg = "assets/images/cat_ears_female_profile_background_img.png" ;      
-  static const String hoodieBoyProfileBackgroundImg = "assets/images/hoodie_boy_profile_background_img.png" ;
-  static const String gamerGirlProfileBackgroundImg = "assets/images/gamer_girl_profile_background_img.png" ;
+  static const String filmImage = "assets/images/film.png" ;
+  static const String searchIcon = "assets/icons/search_icon..svg" ;
+  static const String starImage = "assets/images/star_icon.png" ;
+
+
 }
