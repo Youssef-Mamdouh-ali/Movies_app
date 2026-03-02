@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
-import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
+import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 
 
+import '../../../core/utils/app_strings/app_string.dart';
 import '../../../core/utils/theme/app_colors.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../model/model.dart';
@@ -80,7 +81,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: AppString.mahmoud,
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -220,7 +221,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, PagesRoutesName.loginView);
     }
     setState(() {});
   }

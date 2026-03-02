@@ -45,192 +45,174 @@ class _RegisterViewState extends State<RegisterView> {
         ),
       ),
       body: SingleChildScrollView(
-        child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomCarouselSliderWidget(
-                  items: RegisterDataModel.registerList.map((avater) {
-                    return Container(
-                      width: 160,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            
+            CustomCarouselSliderWidget(
+              items: RegisterDataModel.registerList.map((avater) {
+                return Container(
+                  width: 125,
+                  height: 160,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: ClipOval(
+                    child: Image.asset(
+                      avater.imagePath,
+                      fit: BoxFit.cover,
+                      width: 125,
                       height: 160,
-                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                      child: ClipOval(
-                        child: Image.asset(
-                          avater.imagePath,
-                          fit: BoxFit.cover,
-                          width: 160,
-                          height: 160,
-                        ),
+                    ),
+                  ),
+                );
+              }).toList(),
+              onPageChanged: (index, reason) {
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+            ),
+            const SizedBox(height: 10),
+            Text(AppString.avatar, style: theme.textTheme.bodyLarge),
+            const SizedBox(height: 12),
+
+            
+            CustomTextFormFieldWidget(
+              text: AppString.name,
+              customPrefixWidget: SvgPicture.asset(
+                AppAssets.nameIcon,
+                width: 24,
+                height: 24,
+              ),
+            ),
+            const SizedBox(height: 24),
+            CustomTextFormFieldWidget(
+              text: AppString.email,
+              customPrefixWidget: SvgPicture.asset(
+                AppAssets.emailIcon,
+                width: 24,
+                height: 24,
+              ),
+            ),
+            const SizedBox(height: 24),
+            CustomTextFormFieldWidget(
+              text: AppString.password,
+              isPassword: isActivePassword,
+              customPrefixWidget: SvgPicture.asset(
+                AppAssets.passwordIcon,
+                width: 24,
+                height: 24,
+              ),
+              customSuffixWidget: InkWell(
+                onTap: () {
+                  setState(() {
+                    isActivePassword = !isActivePassword;
+                  });
+                },
+                child: isActivePassword
+                    ? SvgPicture.asset(AppAssets.eyeIcon, width: 20, height: 20)
+                    : Icon(Icons.remove_red_eye_sharp, color: AppColors.whiteColor),
+              ),
+            ),
+            const SizedBox(height: 24),
+            CustomTextFormFieldWidget(
+              text: AppString.confirmPassword,
+              isPassword: isActiveConfirmPassword,
+              customPrefixWidget: SvgPicture.asset(
+                AppAssets.passwordIcon,
+                width: 24,
+                height: 24,
+              ),
+              customSuffixWidget: InkWell(
+                onTap: () {
+                  setState(() {
+                    isActiveConfirmPassword = !isActiveConfirmPassword;
+                  });
+                },
+                child: isActiveConfirmPassword
+                    ? SvgPicture.asset(AppAssets.eyeIcon, width: 20, height: 20)
+                    : Icon(Icons.remove_red_eye_sharp, color: AppColors.whiteColor),
+              ),
+            ),
+            const SizedBox(height: 24),
+            CustomTextFormFieldWidget(
+              text: AppString.phoneNumber,
+              customPrefixWidget: SvgPicture.asset(
+                AppAssets.phoneIcon,
+                width: 24,
+                height: 24,
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            Row(
+              children: [
+                Expanded(
+                  child: CustomElevatedButtonWidget(
+                    onPressed: () {},
+                    customChildWidget: Text(
+                      AppString.headerCreateAccount,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: AppColors.greyColor,
                       ),
-                    );
-                  }).toList(),
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                ),
-                SizedBox(height: 10),
-                Text(AppString.avatar, style: theme.textTheme.bodyLarge),
-                SizedBox(height: 12),
-                CustomTextFormFieldWidget(
-                  text: AppString.name,
-                  customPrefixWidget: SvgPicture.asset(
-                    AppAssets.nameIcon,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-                SizedBox(height: 24),
-                CustomTextFormFieldWidget(
-                  text: AppString.email,
-                  customPrefixWidget: SvgPicture.asset(
-                    AppAssets.emailIcon,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-                SizedBox(height: 24),
-                CustomTextFormFieldWidget(
-                  text: AppString.password,
-                  isPassword: isActivePassword,
-                  customPrefixWidget: SvgPicture.asset(
-                    AppAssets.passwordIcon,
-                    width: 24,
-                    height: 24,
-                  ),
-                  customSuffixWidget: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isActivePassword = !isActivePassword;
-                      });
-                    },
-                    child: isActivePassword
-                        ? SvgPicture.asset(
-                            AppAssets.eyeIcon,
-                            width: 20,
-                            height: 20,
-                          )
-                        : Icon(
-                            Icons.remove_red_eye_sharp,
-                            color: AppColors.whiteColor,
-                          ),
-                  ),
-                ),
-                SizedBox(height: 24),
-                CustomTextFormFieldWidget(
-                  text: AppString.confirmPassword,
-                  isPassword: isActiveConfirmPassword,
-                  customPrefixWidget: SvgPicture.asset(
-                    AppAssets.passwordIcon,
-                    width: 24,
-                    height: 24,
-                  ),
-                  customSuffixWidget: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isActiveConfirmPassword = !isActiveConfirmPassword;
-                      });
-                    },
-                    child: isActiveConfirmPassword
-                        ? SvgPicture.asset(
-                            AppAssets.eyeIcon,
-                            width: 20,
-                            height: 20,
-                          )
-                        : Icon(
-                            Icons.remove_red_eye_sharp,
-                            color: AppColors.whiteColor,
-                          ),
-                  ),
-                ),
-                SizedBox(height: 24),
-                CustomTextFormFieldWidget(
-                  text: AppString.phoneNumber,
-                  customPrefixWidget: SvgPicture.asset(
-                    AppAssets.phoneIcon,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-                SizedBox(height: 24),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomElevatedButtonWidget(
-                        onPressed: () {},
-                        customChildWidget: Text(
-                          AppString.headerCreateAccount,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            color: AppColors.greyColor,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 18),
-                Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: AppString.alreadyHaveAccount,
-                          style: theme.textTheme.bodyMedium,
-                        ),
-                        WidgetSpan(
-                          child: Bounceable(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                PagesRoutesName.loginView,
-                              );
-                            },
-                            child: Text(
-                              AppString.login,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: AppColors.primaryColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-                SizedBox(height: 18),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomLanguageSwitchWidget(
-                      onTapLeft: () {
-                        if (isArabic) {
-                          setState(() {
-                            isArabic = !isArabic;
-                          });
-                        }
-                      },
-                      onTapRight: () {
-                        if (!isArabic) {
-                          setState(() {
-                            isArabic = !isArabic;
-                          });
-                        }
-                      },
-                      isArabic: isArabic,
-                    ),
-                  ],
                 ),
               ],
-            ).setHorizontalAndVerticalPadding(
-              context,
-              16,
-              8,
-              enableMediaQuery: false,
             ),
+            const SizedBox(height: 18),
+
+            
+            Center(
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: AppString.alreadyHaveAccount,
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                    WidgetSpan(
+                      child: Bounceable(
+                        onTap: () {
+                          Navigator.pushNamed(context, PagesRoutesName.loginView);
+                        },
+                        child: Text(
+                          "  ${AppString.login}",
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
+
+            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomLanguageSwitchWidget(
+                  onTapLeft: () {
+                    if (isArabic) setState(() => isArabic = !isArabic);
+                  },
+                  onTapRight: () {
+                    if (!isArabic) setState(() => isArabic = !isArabic);
+                  },
+                  isArabic: isArabic,
+                ),
+              ],
+            ),
+          ],
+        ).setHorizontalAndVerticalPadding(
+          context,
+          18,
+          8,
+          enableMediaQuery: false,
+        ),
       ),
     );
   }

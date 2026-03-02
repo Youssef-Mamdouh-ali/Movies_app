@@ -20,7 +20,5 @@ class AppString {
   static const String phoneNumber = "Phone Number";
   static const String headerCreateAccount = "Create your account";
   static const String verifyEmail = "Verify email";
-  static const String mahmoud = "Mahmoud";
-
 
 }
