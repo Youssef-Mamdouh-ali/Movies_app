@@ -1,9 +1,73 @@
 import 'package:flutter/material.dart';
-class LayoutView extends StatelessWidget {
+import 'package:movies_app_project/Features/home/browse_view/browse_view.dart';
+import 'package:movies_app_project/Features/home/home_view/home_view.dart';
+import 'package:movies_app_project/Features/home/profile_view/profile_view.dart';
+import 'package:movies_app_project/Features/home/search_view/search_view.dart';
+import 'package:movies_app_project/core/utils/theme/app_colors.dart';
+class LayoutView extends StatefulWidget {
   const LayoutView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
+  State<LayoutView> createState() => _LayoutViewState();
 }
+
+class _LayoutViewState extends State<LayoutView> {
+    int _selectedIndex = 0;
+    final List<Widget> _pages = [
+      HomeView(),
+      SearchView(),
+      BrowseView(),
+      ProfileView()
+    ];
+
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          child: Container(
+            height: 70,
+            decoration: BoxDecoration(
+              color: AppColors.darkColor ,
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildNavItem(Icons.home_filled, 0),
+                _buildNavItem(Icons.search, 1),
+                _buildNavItem(Icons.explore_outlined, 2),
+                _buildNavItem(Icons.account_circle, 3),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget _buildNavItem(IconData icon, int index) {
+      bool isSelected = _selectedIndex == index;
+      return GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        child: Icon(
+          icon,
+          size: 30,
+          color: isSelected ? AppColors.primaryColor : AppColors.whiteColor,
+        ),
+      );
+    }
+
+  }
+
