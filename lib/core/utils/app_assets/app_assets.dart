@@ -26,4 +26,7 @@ class AppAssets {
   static const String catEarsFemaleProfileBackgroundImg = "assets/images/cat_ears_female_profile_background_img.png" ;      
   static const String hoodieBoyProfileBackgroundImg = "assets/images/hoodie_boy_profile_background_img.png" ;
   static const String gamerGirlProfileBackgroundImg = "assets/images/gamer_girl_profile_background_img.png" ;
+  static const String folderIcon = "assets/icons/folder_icn.svg" ;
+  static const String watchListIcon = "assets/icons/watch_list_icn.svg" ;
+  static const String popcornAnimation = "assets/animations/popcorn.json" ;
 }

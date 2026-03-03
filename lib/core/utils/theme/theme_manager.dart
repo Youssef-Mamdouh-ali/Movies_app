@@ -19,7 +19,7 @@ abstract class ThemeManager {
       ),
       titleLarge: TextStyle(
         fontFamily: 'Cairo',
-        fontWeight: FontWeight.w800,
+        fontWeight: FontWeight.w500,
         color: AppColors.whiteColor,
       ),
       headlineSmall: TextStyle(
@@ -29,7 +29,7 @@ abstract class ThemeManager {
       ),
       displayMedium: TextStyle(
         fontFamily: 'Cairo',
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w800,
         color: AppColors.whiteColor,
       ),
     ),
@@ -67,6 +67,22 @@ abstract class ThemeManager {
       color: AppColors.primaryColor,
       thickness: 1,
     ),
-   
+   tabBarTheme: TabBarThemeData(
+     indicatorColor: AppColors.primaryColor,
+     labelColor: AppColors.primaryColor,
+     indicatorSize: TabBarIndicatorSize.tab,
+      unselectedLabelColor: AppColors.whiteColor,
+      labelStyle:  TextStyle(
+        fontFamily: 'Cairo',
+        fontWeight: FontWeight.w500,
+        color: AppColors.primaryColor,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontFamily: 'Cairo',
+        fontWeight: FontWeight.w500,
+        color: AppColors.whiteColor,
+      ),
+      dividerColor: Colors.transparent,
+    ),
   );
 }
