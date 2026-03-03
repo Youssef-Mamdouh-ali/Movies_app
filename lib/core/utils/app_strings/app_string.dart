@@ -29,4 +29,5 @@ class AppString {
   static const String nameText = "Abdelrahman Elsayed";
   static const String watchList = "Watch List";
   static const String viewMore = "View more";
+  static const String search = "Search";
 }

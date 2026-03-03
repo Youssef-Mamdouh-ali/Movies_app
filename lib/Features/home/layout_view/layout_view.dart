@@ -30,7 +30,7 @@ class _LayoutViewState extends State<LayoutView> {
             height: 70,
             decoration: BoxDecoration(
               color: AppColors.darkColor ,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey,
