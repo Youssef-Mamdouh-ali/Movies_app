@@ -3,7 +3,7 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 
-
+import '../../../core/utils/app_strings/app_string.dart';
 import '../../../core/utils/theme/app_colors.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../model/model.dart';
