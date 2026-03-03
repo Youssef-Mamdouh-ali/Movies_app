@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     title: "Movies App Project",
     debugShowCheckedModeBanner: false,
     theme: ThemeManager.themeData,
-    initialRoute: PagesRoutesName.onBoardingView,
+    initialRoute: PagesRoutesName.profileView,
     onGenerateRoute: AppRouter.onGenerate,
 
   );
