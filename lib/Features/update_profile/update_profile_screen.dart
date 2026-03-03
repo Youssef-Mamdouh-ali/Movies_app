@@ -7,7 +7,7 @@ import '../../core/widgets/custom_elevated_button_widget.dart';
 import '../../core/widgets/custom_text_form_field_widget.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
-  UpdateProfileScreen({super.key});
+  const UpdateProfileScreen({super.key});
 
   @override
   State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
