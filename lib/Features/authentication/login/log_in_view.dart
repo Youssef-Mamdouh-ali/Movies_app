@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
@@ -10,6 +11,7 @@ import 'package:movies_app_project/core/widgets/custom_elevated_button_widget.da
 import 'package:movies_app_project/core/widgets/custom_text_form_field_widget.dart';
 
 import '../../../core/widgets/custom_language_switch_widget.dart';
+import 'Login_cubit/auth_cubit.dart';
 
 class LogInView extends StatefulWidget {
   const LogInView({super.key});
@@ -21,189 +23,216 @@ class LogInView extends StatefulWidget {
 class _LogInViewState extends State<LogInView> {
   bool isActive = true;
   bool isArabic = true;
+  final emailController = TextEditingController(text: 'mahmoud@gmail.com');
+  final passwordController = TextEditingController(text: '123456789');
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(AppAssets.headerLogo,
-              width: 120,
-                height: 118,
-                fit: BoxFit.cover,
-            ),
-            SizedBox(height: 69),
-            CustomTextFormFieldWidget(
-              text: AppString.email,
-              customPrefixWidget: SvgPicture.asset(AppAssets.emailIcon,
-                width: 24,
-                height: 24,
-              )
-            ),
-            SizedBox(height: 22.5),
-            CustomTextFormFieldWidget(
-              text: AppString.password,
-              isPassword: isActive,
-              customPrefixWidget:SvgPicture.asset(AppAssets.passwordIcon,
-                width: 24,
-                height: 24,
-              ) ,
-              customSuffixWidget: InkWell(
-                onTap: () {
-                  setState(() {
-                    isActive = !isActive;
-                  });
-                },
-                child: isActive
-                    ? SvgPicture.asset(AppAssets.eyeIcon,
-                  width: 24,
-                  height: 24,
-                   )
-                    : Icon(
-                        Icons.remove_red_eye_sharp,
-                  color: AppColors.whiteColor,
-                      ),
-              ),
-            ),
-            SizedBox(height: 17),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(
-                        context, PagesRoutesName.forgetPasswordView
-                    );
-                  },
-                  child: Text(
-                    AppString.forgetPassword,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 33),
-            Row(
-              children: [
-                Expanded(
-                  child: CustomElevatedButtonWidget(
-                    onPressed: () {
-                      ///TODO : Edit this navigate only to check
-                   Navigator.pushReplacementNamed(context, PagesRoutesName.layoutView);
-                    },
-                    customChildWidget: Text(
-                      AppString.login,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        color: AppColors.greyColor,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 23),
-            Center(
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
+      body: BlocConsumer<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    TextSpan(
-                      text: AppString.doNotHaveAccount,
-                      style: theme.textTheme.bodyMedium,
+                    Image.asset(
+                      AppAssets.headerLogo,
+                      width: 120,
+                      height: 118,
+                      fit: BoxFit.cover,
                     ),
-                    WidgetSpan(
-                      child: Bounceable(
+                    SizedBox(height: 69),
+                    CustomTextFormFieldWidget(
+                      text: AppString.email,
+                      controller: emailController,
+                      customPrefixWidget: SvgPicture.asset(
+                        AppAssets.emailIcon,
+                        width: 24,
+                        height: 24,
+                      ),
+                    ),
+                    SizedBox(height: 22.5),
+                    CustomTextFormFieldWidget(
+                      controller: passwordController,
+                      text: AppString.password,
+                      isPassword: isActive,
+                      customPrefixWidget: SvgPicture.asset(
+                        AppAssets.passwordIcon,
+                        width: 24,
+                        height: 24,
+                      ),
+                      customSuffixWidget: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, PagesRoutesName.registerView);
+                          setState(() {
+                            isActive = !isActive;
+                          });
                         },
-                        child: Text(
-                          AppString.register,
-                          style: theme.textTheme.bodyMedium?.copyWith(
+                        child: isActive
+                            ? SvgPicture.asset(
+                                AppAssets.eyeIcon,
+                                width: 24,
+                                height: 24,
+                              )
+                            : Icon(
+                                Icons.remove_red_eye_sharp,
+                                color: AppColors.whiteColor,
+                              ),
+                      ),
+                    ),
+                    SizedBox(height: 17),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              PagesRoutesName.forgetPasswordView,
+                            );
+                          },
+                          child: Text(
+                            AppString.forgetPassword,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: AppColors.primaryColor,
+                            ),
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 33),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomElevatedButtonWidget(
+                            onPressed: state is AuthLoading
+                                ? null
+                                : () {
+                                    context.read<AuthCubit>().login(
+                                      emailController.text.trim(),
+                                      passwordController.text.trim(),
+                                    );
+                                  },
+                            customChildWidget: state is AuthLoading
+                                ? const CircularProgressIndicator()
+                                : Text(AppString.login),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 23),
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: AppString.doNotHaveAccount,
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                            WidgetSpan(
+                              child: Bounceable(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    PagesRoutesName.registerView,
+                                  );
+                                },
+                                child: Text(
+                                  AppString.register,
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 23),
+                    Row(
+                      children: [
+                        Expanded(child: Divider(indent: 99.5, endIndent: 15)),
+                        Text(
+                          AppString.or,
+                          style: theme.textTheme.bodyLarge?.copyWith(
                             color: AppColors.primaryColor,
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 23),
-            Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    indent: 99.5,
-                    endIndent: 15,
-                  ),
-                ),
-                Text(AppString.or,
-                    style: theme.textTheme.bodyLarge?.copyWith(
-                      color: AppColors.primaryColor,
-                    )),
-                Expanded(
-                  child: Divider(
-                    indent: 15,
-                    endIndent: 99.5,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: CustomElevatedButtonWidget(
-                    onPressed: () {},
-                    customChildWidget: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(AppAssets.googleIcon,
-                          width: 24,
-                          height: 24,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          AppString.loginWithGoogle,
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: AppColors.greyColor,
-                          ),
-                        )
+                        Expanded(child: Divider(indent: 15, endIndent: 99.5)),
                       ],
                     ),
-                  ),
+                    SizedBox(height: 24),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomElevatedButtonWidget(
+                            onPressed: () {},
+                            customChildWidget: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  AppAssets.googleIcon,
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                SizedBox(width: 4),
+                                Text(
+                                  AppString.loginWithGoogle,
+                                  style: theme.textTheme.bodyLarge?.copyWith(
+                                    color: AppColors.greyColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 33.5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomLanguageSwitchWidget(
+                          isArabic: isArabic,
+                          onTapLeft: () {
+                            if (isArabic) setState(() => isArabic = !isArabic);
+                          },
+                          onTapRight: () {
+                            if (!isArabic) setState(() => isArabic = !isArabic);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ).setHorizontalAndVerticalPadding(
+                  context,
+                  16,
+                  48,
+                  enableMediaQuery: false,
                 ),
-              ],
-            ),
-            SizedBox(height: 33.5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomLanguageSwitchWidget(isArabic: isArabic,
-                onTapLeft: () {
-                    if (isArabic) setState(() => isArabic = !isArabic);
-                  },
-                  onTapRight: () {
-                    if (!isArabic) setState(() => isArabic = !isArabic);
-                  },),
-              ],
-            )
-          ],
-        ).setHorizontalAndVerticalPadding(
-          context,
-          16,
-          48,
-          enableMediaQuery: false,
-        ),
+          );
+        },
+        listener: (context, state) {
+          switch (state) {
+            case AuthLoading():
+              Center(child: CircularProgressIndicator());
+            case AuthSuccess():
+              Navigator.pushReplacementNamed(
+                context,
+                PagesRoutesName.layoutView,
+              );
+            // return const SizedBox();
+            case AuthError():
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.message)));
+            default:
+          }
+        },
       ),
     );
   }

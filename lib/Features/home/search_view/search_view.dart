@@ -14,17 +14,27 @@ class SearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Scaffold(
-      appBar: CustomAppBarWidget(
-
-        customTitleWidget: CustomTextFormFieldWidget(
-          text: 'Search',
-          customPrefixWidget: Icon(Icons.search, color: AppColors.primaryColor),
-          maxLines: 1,
-        ),
-      ),
-
+      // appBar: CustomAppBarWidget(
+      //
+      //   customTitleWidget: CustomTextFormFieldWidget(
+      //     text: 'Search',
+      //     customPrefixWidget: Icon(Icons.search, color: AppColors.primaryColor),
+      //     maxLines: 1,
+      //   ),
+      // ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Center(
+            child: Text(
+              'search',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                color: AppColors.whiteColor,
+              ),
+            ),
+          ),
           // CustomAppBarWidget(
           //   customTitleWidget: CustomTextFormFieldWidget(
           //     text: 'search',
@@ -35,22 +45,22 @@ class SearchView extends StatelessWidget {
           //     maxLines: 1,
           //   ),
           // ),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0,
-                childAspectRatio: 0.70,
-              ),
-
-              // padding: EdgeInsets.all(16),
-              itemBuilder: (context, index) =>
-                  CustomCardWidget(imagePath: AppAssets.onboarding2),
-              // separatorBuilder: (context, index) => SizedBox(height: 30,width: 50,),
-              itemCount: 10,
-            ),
-          ),
+          // Expanded(
+          //   child: GridView.builder(
+          //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //       crossAxisCount: 2,
+          //       crossAxisSpacing: 0,
+          //       mainAxisSpacing: 0,
+          //       childAspectRatio: 0.70,
+          //     ),
+          //
+          //     // padding: EdgeInsets.all(16),
+          //     itemBuilder: (context, index) =>
+          //         CustomCardWidget(imagePath: AppAssets.onboarding2),
+          //     // separatorBuilder: (context, index) => SizedBox(height: 30,width: 50,),
+          //     itemCount: 10,
+          //   ),
+          // ),
         ],
       ),
     );
