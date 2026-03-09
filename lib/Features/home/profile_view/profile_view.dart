@@ -29,7 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
               children: [
                 CustomHeaderContainerProfileWidget(
                   nameText: AppString.nameText,
-                  imagePath: AppAssets.hoodieBoyProfileBackgroundImg,
+                  imagePath: AppAssets.avatar1,
                 ),
                 Container(
                   height: 60,

@@ -15,17 +15,17 @@ class UpdateProfileScreen extends StatefulWidget {
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final List<String> avatarImages = [
-    AppAssets.beardedGamerProfileBackgroundImg,
-    AppAssets.beardedManProfileBackgroundImg,
-    AppAssets.blondeFemaleProfileBackgroundImg,
-    AppAssets.catEarsFemaleProfileBackgroundImg,
-    AppAssets.coolGamerProfileBackgroundImg,
-    AppAssets.gamerGirlProfileBackgroundImg,
-    AppAssets.gentlemanProfileBackgroundImg,
-    AppAssets.hoodieBoyProfileBackgroundImg,
-    AppAssets.redHeadFemaleProfileBackgroundImg,
+    AppAssets.avatar1,
+    AppAssets.avatar2,
+    AppAssets.avatar3,
+    AppAssets.avatar4,
+    AppAssets.avatar5,
+    AppAssets.avatar6,
+    AppAssets.avatar7,
+    AppAssets.avatar8,
+    AppAssets.avatar9,
   ];
-  String selectedAvatar = AppAssets.hoodieBoyProfileBackgroundImg;
+  String selectedAvatar = AppAssets.avatar2;
 
   @override
   Widget build(BuildContext context) {
