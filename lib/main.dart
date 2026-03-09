@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
     theme: ThemeManager.themeData,
     initialRoute: PagesRoutesName.onBoardingView,
     onGenerateRoute: AppRouter.onGenerate,
-
   );
   }
 }
