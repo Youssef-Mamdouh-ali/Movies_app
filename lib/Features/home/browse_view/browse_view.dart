@@ -41,3 +41,21 @@ class BrowseView extends StatelessWidget {
     );
   }
 }
+//          Expanded(
+
+//             child: GridView.builder(
+//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                 crossAxisCount: 2,
+//                 crossAxisSpacing: 0,
+//                 mainAxisSpacing: 0,
+//                 childAspectRatio: 0.70,
+//               ),
+//
+//               // padding: EdgeInsets.all(16),
+//               itemBuilder: (context, index) =>
+//                   CustomCardWidget(imagePath: AppAssets.onboarding2),
+//               // separatorBuilder: (context, index) => SizedBox(height: 30,width: 50,),
+//               itemCount: 10,
+//             ),
+//           ),
+}

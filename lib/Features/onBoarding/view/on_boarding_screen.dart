@@ -81,7 +81,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: 'Next',
+                    text: AppString.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -221,7 +221,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushNamed(context, PagesRoutesName.loginView);
+      Navigator.pushReplacementNamed(context, PagesRoutesName.loginView);
     }
     setState(() {});
   }
