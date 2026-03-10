@@ -6,6 +6,7 @@ import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 import 'package:movies_app_project/core/utils/theme/theme_manager.dart';
 import 'Features/authentication/login/Login_cubit/auth_cubit.dart';
 import 'Features/authentication/services/auth_services.dart';
+import 'Features/home/layout_view/layout_view.dart';
 import 'core/utils/router/app_router.dart';
 import 'firebase_options.dart';
 

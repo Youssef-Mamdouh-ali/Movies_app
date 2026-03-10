@@ -1,84 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
-
-import '../../../core/utils/app_assets/app_assets.dart';
-import '../browse_view/browse_view.dart';
-import '../home_view/home_view.dart';
-import '../profile_view/profile_view.dart';
-import '../search_view/search_view.dart';
-
+import 'package:movies_app_project/Features/home/browse_view/browse_view.dart';
+import 'package:movies_app_project/Features/home/home_view/home_view.dart';
+import 'package:movies_app_project/Features/home/profile_view/profile_view.dart';
+import 'package:movies_app_project/Features/home/search_view/search_view.dart';
+import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 class LayoutView extends StatefulWidget {
-   LayoutView({super.key});
+  const LayoutView({super.key});
 
   @override
   State<LayoutView> createState() => _LayoutViewState();
 }
 
 class _LayoutViewState extends State<LayoutView> {
-  int currentIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> screens = [
+    int _selectedIndex = 0;
+    final List<Widget> _pages = [
       HomeView(),
-      BrowseView(),
       SearchView(),
-      ProfileView(),
+      BrowseView(),
+      ProfileView()
     ];
-    return Scaffold(
 
-      body: screens[currentIndex],
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          child: Container(
+            height: 70,
+            decoration: BoxDecoration(
+              color: AppColors.darkColor ,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildNavItem(Icons.home_filled, 0),
+                _buildNavItem(Icons.search, 1),
+                _buildNavItem(Icons.explore_outlined, 2),
+                _buildNavItem(Icons.account_circle, 3),
+              ],
+            ),
+          ),
         ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey,
-          selectedFontSize: 12,
-          unselectedFontSize: 12,
-          showUnselectedLabels: true,
-          showSelectedLabels: true,
-          iconSize: 24,
-          currentIndex: 0,
-          onTap: (index) {
-            currentIndex = index;
+      );
+    }
 
-            setState(() {});
-          },
-          elevation: 0,
-
-          items: [
-            BottomNavigationBarItem(
-
-              icon: SvgPicture.asset(AppAssets.emailIcon,color: Colors.black,),
-              activeIcon: SvgPicture.asset(AppAssets.emailIcon,color: Colors.black,),
-
-              label: 'Home',
-
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppAssets.emailIcon,color: Colors.black,),
-              label: 'Browse',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppAssets.emailIcon,color: Colors.black,),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppAssets.emailIcon,color: Colors.black,),
-              label: 'Profile',
-            ),
-          ],
+    Widget _buildNavItem(IconData icon, int index) {
+      bool isSelected = _selectedIndex == index;
+      return GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        child: Icon(
+          icon,
+          size: 30,
+          color: isSelected ? AppColors.primaryColor : AppColors.whiteColor,
         ),
-      ),
+      );
+    }
 
-
-
-    );
   }
-}
+

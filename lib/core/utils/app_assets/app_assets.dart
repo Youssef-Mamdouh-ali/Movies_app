@@ -17,13 +17,16 @@ class AppAssets {
   static const String forgetPassword = "assets/images/Forget_password.png" ;
   static const String nameIcon = "assets/icons/name_icn.svg" ;
   static const String phoneIcon = "assets/icons/phone_icn.svg" ;
-  static const String beardedGamerProfileBackgroundImg = "assets/images/bearded_gamer_profile_background_img.png" ;
-  static const String coolGamerProfileBackgroundImg = "assets/images/cool_gamer_profile_background_img.png" ;
-  static const String blondeFemaleProfileBackgroundImg = "assets/images/blonde_female_profile_background_img.png" ;
-  static const String beardedManProfileBackgroundImg = "assets/images/bearded_man_profile_background_img.png" ;
-  static const String redHeadFemaleProfileBackgroundImg = "assets/images/red_head_female_profile_background_img.png" ;
-  static const String gentlemanProfileBackgroundImg = "assets/images/gentleman_profile_background_img.png" ;
-  static const String catEarsFemaleProfileBackgroundImg = "assets/images/cat_ears_female_profile_background_img.png" ;      
-  static const String hoodieBoyProfileBackgroundImg = "assets/images/hoodie_boy_profile_background_img.png" ;
-  static const String gamerGirlProfileBackgroundImg = "assets/images/gamer_girl_profile_background_img.png" ;
+  static const String avatar1 = "assets/images/avatar1.png" ;
+  static const String avatar5 = "assets/images/avatar5.png" ;
+  static const String avatar3 = "assets/images/avatar3.png" ;
+  static const String avatar2 = "assets/images/avatar2.png" ;
+  static const String avatar9 = "assets/images/avatar9.png" ;
+  static const String avatar7 = "assets/images/avatar7.png" ;
+  static const String avatar4 = "assets/images/avatar4.png" ;
+  static const String avatar8 = "assets/images/avatar8.png" ;
+  static const String avatar6 = "assets/images/avatar6.png" ;
+  static const String folderIcon = "assets/icons/folder_icn.svg" ;
+  static const String watchListIcon = "assets/icons/watch_list_icn.svg" ;
+  static const String popcornAnimation = "assets/animations/popcorn.json" ;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/Features/home/browse_view/widegts/tab_Bar_Widget.dart';
+import 'package:movies_app_project/Features/home/browse_view/widget/tab_bar_widget.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
 import '../../../core/utils/app_assets/app_assets.dart';
@@ -58,3 +58,4 @@ class BrowseView extends StatelessWidget {
 //               itemCount: 10,
 //             ),
 //           ),
+}

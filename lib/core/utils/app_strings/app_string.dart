@@ -20,6 +20,14 @@ class AppString {
   static const String phoneNumber = "Phone Number";
   static const String headerCreateAccount = "Create your account";
   static const String verifyEmail = "Verify email";
-  static const String mahmoud = "Mahmoud";
-
+  static const String verifyEmailDescription =
+      "We emailed you the six digit code to";
+  static const String wishList = "Wtsh List";
+  static const String history = "History";
+  static const String editProfile = "Edit Profile";
+  static const String exit = "Exit";
+  static const String nameText = "Abdelrahman Elsayed";
+  static const String watchList = "Watch List";
+  static const String viewMore = "View more";
+  static const String search = "Search";
 }
