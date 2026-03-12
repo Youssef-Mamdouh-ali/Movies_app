@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/Features/home/profile_view/widget/custom_header_container_profile_widget.dart';
-import 'package:movies_app_project/Features/home/profile_view/widget/custom_history_list_body_widget.dart';
-import 'package:movies_app_project/Features/home/profile_view/widget/custom_watch_list_body_widget.dart';
-import 'package:movies_app_project/Features/home/profile_view/widget/custom_tab_bar_widget.dart';
+import 'package:movies_app_project/Features/home/presentation/widgets/custom_header_container_profile_widget.dart';
+import 'package:movies_app_project/Features/home/presentation/widgets/custom_history_list_body_widget.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
 import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
+
+import '../widgets/custom_tab_bar_widget.dart';
+import '../widgets/custom_watch_list_body_widget.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});

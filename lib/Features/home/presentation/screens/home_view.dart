@@ -2,9 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
-import '../../../core/models/movie_card_model.dart';
-import '../../../core/widgets/custom_movie_card.dart';
-import '../../../core/widgets/custom_movies_category.dart';
+import '../../../../core/models/movie_card_model.dart';
+import '../../../../core/widgets/custom_movie_card.dart';
+import '../../../../core/widgets/custom_movies_category.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
