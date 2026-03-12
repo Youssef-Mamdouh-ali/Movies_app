@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
 class CustomCardWidget extends StatelessWidget {
   final String imagePath;
+  final double rate ;
 
-  const CustomCardWidget({super.key, required this.imagePath});
+
+  const CustomCardWidget({super.key, required this.imagePath,required this.rate});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class CustomCardWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
-          image: AssetImage(imagePath),
+          image: NetworkImage(imagePath),
           fit: BoxFit.cover,
         ),
       ),
@@ -23,18 +26,18 @@ class CustomCardWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: Colors.black54,
+              color: AppColors.darkColor,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Text(
-                  '4.5',
-                  style: TextStyle(color: Colors.white),
+                  '$rate',
+                  style: const TextStyle(color: AppColors.whiteColor),
                 ),
-                SizedBox(width: 4),
-                Icon(Icons.star, color: Colors.yellow, size: 16),
+                const SizedBox(width: 4),
+                const Icon(Icons.star, color: AppColors.primaryColor, size: 16),
               ],
             ),
           ),
