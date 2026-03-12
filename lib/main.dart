@@ -5,6 +5,7 @@ import 'package:movies_app_project/core/services/loading_service.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 import 'package:movies_app_project/core/utils/theme/theme_manager.dart';
 import 'core/services/service_locator.dart';
+import 'Features/home/presentation/screens/layout_view.dart';
 import 'core/utils/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
