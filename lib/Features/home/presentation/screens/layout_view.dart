@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/Features/home/browse_view/browse_view.dart';
-import 'package:movies_app_project/Features/home/home_view/home_view.dart';
-import 'package:movies_app_project/Features/home/profile_view/profile_view.dart';
-import 'package:movies_app_project/Features/home/search_view/search_view.dart';
+import 'package:movies_app_project/Features/home/presentation/screens/browse_view.dart';
+import 'package:movies_app_project/Features/home/presentation/screens/home_view.dart';
+import 'package:movies_app_project/Features/home/presentation/screens/profile_view.dart';
+import 'package:movies_app_project/Features/home/presentation/screens/search_view.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});

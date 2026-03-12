@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/Features/home/profile_view/widget/custom_empty_list_widget.dart';
+import 'package:movies_app_project/Features/home/presentation/widgets/custom_empty_list_widget.dart';
 
 
 class CustomWatchListBodyWidget extends StatelessWidget {
