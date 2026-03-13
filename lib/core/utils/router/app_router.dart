@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/Features/authentication/forget_password/forget_password.dart';
-import 'package:movies_app_project/Features/authentication/login/log_in_view.dart';
-import 'package:movies_app_project/Features/authentication/register/register_view/register_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/browse_view.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/home_view.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/layout_view.dart';
