@@ -1,74 +1,139 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/core/utils/theme/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/models/movie_card_model.dart';
-import '../../../../core/widgets/custom_movie_card.dart';
-import '../../../../core/widgets/custom_movies_category.dart';
+import '../../../../core/utils/api/api_constants.dart';
+import '../bloc/home_bloc.dart';
+import '../bloc/home_event.dart';
+import '../bloc/home_state.dart';
+import '../widgets/custom_movie_category.dart';
+import '../widgets/recent_movie_slider.dart';
+import '../widgets/skeleton_widgets.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<MovieCardModel> dataList = [
-      MovieCardModel(rate: '7.7', imagePath: 'assets/images/home_img.png'),
-      MovieCardModel(rate: '7.7', imagePath: 'assets/images/home_img.png'),
-      MovieCardModel(rate: '7.7', imagePath: 'assets/images/home_img.png'),
-    ];
     return Scaffold(
-      backgroundColor: AppColors.darkColor,
-      body: SingleChildScrollView(
-        child: Column(
-          spacing: 30,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * .7,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/home_img.png'),
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              child: CarouselSlider(
-                items: [
-                  CustomMovieCard(
-                    data: MovieCardModel(
-                      rate: '7.7',
-                      imagePath: 'assets/images/home_img.png',
-                    ),
-                    inSlider: true,
-                  ),
-                  CustomMovieCard(
-                    data: MovieCardModel(
-                      rate: '7.7',
-                      imagePath: 'assets/images/home_img.png',
-                    ),
-                    inSlider: true,
-                  ),
-                  CustomMovieCard(
-                    data: MovieCardModel(
-                      rate: '7.7',
-                      imagePath: 'assets/images/home_img.png',
-                    ),
-                    inSlider: true,
-                  ),
+      backgroundColor: Colors.black,
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return RefreshIndicator(
+            color: Colors.black,
+            backgroundColor: Colors.black,
+            onRefresh: () async {
+              context.read<HomeBloc>().add(const HomeStarted());
+            },
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 28,
+                children: [
+                  _buildRecentSection(state),
+
+                  _buildCategoriesSection(context, state),
+
+                  const SizedBox(height: 20),
                 ],
-                options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height * .4,
-                  viewportFraction: 0.6,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  enlargeFactor: 0.3,
-                  scrollDirection: Axis.horizontal,
-                ),
               ),
             ),
-            CustomMoviesCategory(categoryName: 'Action', data: dataList),
-            CustomMoviesCategory(categoryName: 'Drama', data: dataList),
-            CustomMoviesCategory(categoryName: 'Comedy', data: dataList),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildRecentSection(HomeState state) {
+    final recentState = state.recentState;
+
+    if (recentState is RecentMoviesLoading ||
+        recentState is RecentMoviesInitial) {
+      return const SliderSkeleton();
+    }
+
+    if (recentState is RecentMoviesError) {
+      return _ErrorSection(message: recentState.message, height: 300);
+    }
+
+    if (recentState is RecentMoviesLoaded && recentState.movies.isNotEmpty) {
+      return RecentMoviesSlider(movies: recentState.movies);
+    }
+
+    return const SizedBox.shrink();
+  }
+
+  Widget _buildCategoriesSection(BuildContext context, HomeState state) {
+    final categoryState = state.categoryState;
+
+    if (categoryState is CategoryMoviesLoading ||
+        categoryState is CategoryMoviesInitial) {
+      return Column(
+        spacing: 24,
+        children: List.generate(3, (_) => const CategorySkeleton()),
+      );
+    }
+
+    if (categoryState is CategoryMoviesError) {
+      return _ErrorSection(message: categoryState.message);
+    }
+
+    if (categoryState is CategoryMoviesLoaded) {
+      final map = categoryState.categoryMovies;
+
+      return Column(
+        spacing: 24,
+        children: ApiConstants.suggestionGenres.map((genre) {
+          final movies = map[genre] ?? [];
+          if (movies.isEmpty) return const SizedBox.shrink();
+
+          return CustomMoviesCategory(
+            categoryName: genre,
+            movies: movies,
+            onViewMore: () {
+              // TODO: Navigate to genre listing page
+            },
+          );
+        }).toList(),
+      );
+    }
+
+    return const SizedBox.shrink();
+  }
+}
+
+class _ErrorSection extends StatelessWidget {
+  final String message;
+  final double? height;
+
+  const _ErrorSection({required this.message, this.height});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 12,
+          children: [
+            const Icon(Icons.error_outline_rounded,
+                color: Colors.redAccent, size: 40),
+            Text(
+              message,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.white54),
+              textAlign: TextAlign.center,
+            ),
+            TextButton(
+              onPressed: () =>
+                  context.read<HomeBloc>().add(const HomeStarted()),
+              child: const Text('Retry',
+                  style: TextStyle(color: Colors.black)),
+            ),
           ],
         ),
       ),
