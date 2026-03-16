@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
-import '../models/movie_card_model.dart';
+import '../../domain/entites/movie_entity.dart';
 import 'custom_movie_card.dart';
 
 class CustomMoviesCategory extends StatelessWidget {
   final String categoryName;
-  final List<MovieCardModel> data;
+  final List<MovieEntity> movies;
+  final VoidCallback? onViewMore;
 
   const CustomMoviesCategory({
     super.key,
     required this.categoryName,
-    required this.data,
+    required this.movies,
+    this.onViewMore,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         spacing: 8,
         children: [
@@ -27,19 +28,19 @@ class CustomMoviesCategory extends StatelessWidget {
             children: [
               Text(categoryName, style: Theme.of(context).textTheme.titleLarge),
               GestureDetector(
-                onTap: () {},
+                onTap: onViewMore,
                 child: Row(
                   spacing: 2,
                   children: [
                     Text(
-                      AppString.viewMore,
+                      'View More',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_rounded,
-                      color: AppColors.primaryColor,
+                      color: Colors.black,
                       size: 16,
                     ),
                   ],
@@ -47,17 +48,15 @@ class CustomMoviesCategory extends StatelessWidget {
               ),
             ],
           ),
+
           SizedBox(
             height: MediaQuery.of(context).size.height * .22,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index) {
-                return CustomMovieCard(data: data[index]);
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(width: 16);
-              },
-              itemCount: data.length,
+              itemCount: movies.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 12),
+              itemBuilder: (context, index) =>
+                  CustomMovieCard(movie: movies[index]),
             ),
           ),
         ],

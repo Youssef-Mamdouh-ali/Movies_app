@@ -13,20 +13,20 @@ import '../../../Features/authentication/presentation/manager/auth_bloc.dart';
 import '../../../Features/authentication/presentation/pages/forget_password.dart';
 import '../../../Features/authentication/presentation/pages/log_in_view.dart';
 import '../../../Features/authentication/presentation/pages/register_view.dart';
+import '../../../Features/home/presentation/bloc/home_bloc.dart';
+import '../../../Features/home/presentation/bloc/home_event.dart';
 import '../../services/service_locator.dart';
 
 abstract class AppRouter {
-  static Route<dynamic>?  onGenerate(RouteSettings settings) {
-
+  static Route<dynamic>? onGenerate(RouteSettings settings) {
     switch (settings.name) {
-
-    case PagesRoutesName.loginView:
-      return MaterialPageRoute(
-        builder: (context) => BlocProvider(
-          create: (context) => sl<AuthBloc>(),
-          child: const LogInView(),
-        ),
-      );
+      case PagesRoutesName.loginView:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => sl<AuthBloc>(),
+            child: const LogInView(),
+          ),
+        );
       case PagesRoutesName.registerView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -35,46 +35,30 @@ abstract class AppRouter {
           ),
         );
       case PagesRoutesName.forgetPasswordView:
-        return MaterialPageRoute(
-          builder: (context) => ForgetPassword(),
-        );
-        case PagesRoutesName.onBoardingView:
-        return MaterialPageRoute(
-          builder: (context) => OnBoardingScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => ForgetPassword());
+      case PagesRoutesName.onBoardingView:
+        return MaterialPageRoute(builder: (context) => OnBoardingScreen());
 
       case PagesRoutesName.updateProfileScreen:
-        return MaterialPageRoute(
-          builder: (context) => UpdateProfileScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => UpdateProfileScreen());
       case PagesRoutesName.browseView:
-        return MaterialPageRoute(
-          builder: (context) => BrowseView(),
-        );
+        return MaterialPageRoute(builder: (context) => BrowseView());
       case PagesRoutesName.homeView:
         return MaterialPageRoute(
-          builder: (context) => HomeView(),
+          builder: (_) => BlocProvider(
+            create: (_) => sl<HomeBloc>()..add(const HomeStarted()),
+            child: const HomeView(),
+          ),
         );
       case PagesRoutesName.layoutView:
-        return MaterialPageRoute(
-          builder: (context) => LayoutView(),
-        );
+        return MaterialPageRoute(builder: (context) => LayoutView());
       case PagesRoutesName.profileView:
-        return MaterialPageRoute(
-          builder: (context) => ProfileView(),
-        );
+        return MaterialPageRoute(builder: (context) => ProfileView());
       case PagesRoutesName.searchView:
-        return MaterialPageRoute(
-          builder: (context) => SearchView(),
-        );
+        return MaterialPageRoute(builder: (context) => SearchView());
 
-    default:
-    return MaterialPageRoute(
-    builder: (context) => RegisterView(),
-    );
-
+      default:
+        return MaterialPageRoute(builder: (context) => RegisterView());
     }
-
-    }
-
+  }
 }
