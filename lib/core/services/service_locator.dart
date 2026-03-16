@@ -13,6 +13,7 @@ import '../../Features/home/data/data_sorces/home_remote_data_source.dart';
 import '../../Features/home/data/repositories/home_repositories.dart';
 import '../../Features/home/domain/usecases/get_movies_by_genre_use_case.dart';
 import '../../Features/home/domain/usecases/get_recent_movies_use_case.dart';
+import '../../Features/home/presentation/bloc/home_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -31,32 +32,28 @@ void setupServiceLocator() {
   sl.registerLazySingleton(() => ForgetPasswordUseCase(sl()));
 
   // 4. Bloc
-  sl.registerFactory(() => AuthBloc(sl() , sl() , sl()));
+  sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
 }
 
 Future<void> initDependencies() async {
-  // ── External
   sl.registerLazySingleton<http.Client>(() => http.Client());
 
-  // ── Data Sources
   sl.registerLazySingleton<HomeRemoteDataSource>(
-        () => HomeRemoteDataSourceImpl(client: sl()),
+    () => HomeRemoteDataSourceImpl(client: sl()),
   );
 
-  // ── Repositories
   sl.registerLazySingleton<HomeRepository>(
-        () => HomeRepositoryImpl(remoteDataSource: sl()),
+    () => HomeRepositoryImpl(remoteDataSource: sl()),
   );
 
-  // ── Use Cases
-  sl.registerLazySingleton(() => GetRecentMoviesUseCase(sl()));
-  sl.registerLazySingleton(() => GetMoviesByGenreUseCase(sl()));
+  sl.registerLazySingleton<GetRecentMoviesUseCase>(
+    () => GetRecentMoviesUseCase(sl()),
+  );
+  sl.registerLazySingleton<GetMoviesByGenreUseCase>(
+    () => GetMoviesByGenreUseCase(sl()),
+  );
 
-  // ── BLoC
-  // sl.registerFactory(
-  //       () => HomeBloc(
-  //     getRecentMoviesUseCase: sl(),
-  //     getMoviesByGenreUseCase: sl(),
-  //   ),
-  // );
+  sl.registerFactory<HomeBloc>(
+    () => HomeBloc(getRecentMoviesUseCase: sl(), getMoviesByGenreUseCase: sl()),
+  );
 }
