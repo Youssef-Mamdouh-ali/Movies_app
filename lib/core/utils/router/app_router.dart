@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/browse_view.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/home_view.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/layout_view.dart';
+import 'package:movies_app_project/Features/home/presentation/screens/movie_details_view.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/profile_view.dart';
 import 'package:movies_app_project/Features/home/presentation/screens/search_view.dart';
 import 'package:movies_app_project/Features/onBoarding/view/on_boarding_screen.dart';
 import 'package:movies_app_project/Features/update_profile/update_profile_screen.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
+
 
 import '../../../Features/authentication/presentation/manager/auth_bloc.dart';
 import '../../../Features/authentication/presentation/pages/forget_password.dart';
@@ -51,12 +53,25 @@ abstract class AppRouter {
           ),
         );
       case PagesRoutesName.layoutView:
-        return MaterialPageRoute(builder: (context) => LayoutView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => sl<AuthBloc>(),
+            child: const LayoutView(),
+          ),
+        );
       case PagesRoutesName.profileView:
-        return MaterialPageRoute(builder: (context) => ProfileView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+
+            create: (context) => sl<AuthBloc>(),
+            child: const ProfileView(),
+          ),
+        );
       case PagesRoutesName.searchView:
         return MaterialPageRoute(builder: (context) => SearchView());
-
+      case PagesRoutesName.movieDetailsView:
+        final int movieId = settings.arguments as int;
+        return MaterialPageRoute(builder: (context) => MovieDetailsView(movieId: movieId,));
       default:
         return MaterialPageRoute(builder: (context) => RegisterView());
     }

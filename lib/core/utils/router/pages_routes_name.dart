@@ -9,5 +9,6 @@ class PagesRoutesName {
   static const String layoutView = "/layout-view";
   static const String profileView = "/profile-view";
   static const String searchView = "/search-view";
+  static const String movieDetailsView = "/movie-details-view";
 
 }

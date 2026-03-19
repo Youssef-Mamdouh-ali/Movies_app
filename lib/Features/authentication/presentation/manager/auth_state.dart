@@ -61,3 +61,31 @@ final class ErrorForgetPasswordState extends AuthState {
   @override
   List<Object> get props => [message];
 }
+
+final class LoadingSignOutState extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+final class SuccessSignOutState extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+final class ErrorSignOutState extends AuthState {
+  final String message;
+  const ErrorSignOutState(this.message);
+  @override
+  List<Object> get props => [message];
+}
+
+
+final class SuccessGetUserDataState extends AuthState {
+  final String name;
+  final String photoUrl;
+
+  const SuccessGetUserDataState({required this.name, required this.photoUrl});
+
+  @override
+  List<Object> get props => [name, photoUrl];
+}
