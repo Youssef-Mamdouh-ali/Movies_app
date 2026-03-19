@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movies_app_project/core/l10n/app_localizations.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
 import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
@@ -28,7 +29,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-
+    final appLocalizations = AppLocalizations.of(context)!;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SuccessForgetPasswordState) {
@@ -81,7 +82,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         }
                         return null;
                       },
-                      text: AppString.email,
+                      text: appLocalizations.email,
                       customPrefixWidget: SvgPicture.asset(AppAssets.emailIcon),
                     ),
                   ),
@@ -110,7 +111,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         ),
                       )
                           : Text(
-                        AppString.verifyEmail,
+                        appLocalizations.verifyEmail,
                         style: theme.titleMedium,
                       ),
                     ),

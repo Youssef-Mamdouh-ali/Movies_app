@@ -62,4 +62,8 @@ class RemoteAuthDataSource implements AuthDataSource {
       throw Exception(e.message ?? "Error occurred");
     }
   }
+  @override
+  Future<void> signOut() async {
+    await _auth.signOut(); // ✅ خروج من Firebase
+  }
 }

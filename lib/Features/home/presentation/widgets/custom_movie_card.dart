@@ -1,5 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app_project/Features/home/presentation/bloc/home_bloc.dart';
+import 'package:movies_app_project/Features/home/presentation/bloc/home_event.dart';
+import 'package:movies_app_project/Features/home/presentation/screens/movie_details_view.dart';
+import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
 import '../../domain/entites/movie_entity.dart';
@@ -18,6 +23,15 @@ class CustomMovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = inSlider ? movie.largeCoverImage : movie.mediumCoverImage;
+    print('🖼️ [MovieCard] Loading image for "${movie.title}": $imageUrl');
+    final bool hasValidUrl = imageUrl.isNotEmpty &&
+        (imageUrl.startsWith('http://') ||
+            imageUrl.startsWith('https://'));
+
+    if (!hasValidUrl) {
+      print('❌ [MovieCard] Invalid URL for "${movie.title}": "$imageUrl"');
+    }
     return GestureDetector(
       onTap: onTap,
       child: Container(

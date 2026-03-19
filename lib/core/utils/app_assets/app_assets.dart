@@ -29,4 +29,8 @@ class AppAssets {
   static const String folderIcon = "assets/icons/folder_icn.svg" ;
   static const String watchListIcon = "assets/icons/watch_list_icn.svg" ;
   static const String popcornAnimation = "assets/animations/popcorn.json" ;
+  static const String play = "assets/icons/play_icn.svg";
+  static const String favourite = "assets/icons/favourite_icn.svg";
+  static const String clock = "assets/icons/clock_icn.svg";
+  static const String star = "assets/icons/star_icn.svg";
 }

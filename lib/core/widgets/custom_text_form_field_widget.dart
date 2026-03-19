@@ -8,6 +8,8 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final bool isPassword;
   final Widget customPrefixWidget;
   final int maxLines;
+
+  final void Function(String)? onFieldSubmitted;
   final Widget? customSuffixWidget;
 
   const CustomTextFormFieldWidget({
@@ -18,7 +20,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.isPassword = false,
     required this.customPrefixWidget,
     this.customSuffixWidget,
-    this.maxLines = 1,
+    this.maxLines = 1, this.onFieldSubmitted,
   });
 
   @override
@@ -31,6 +33,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
       cursorColor: AppColors.primaryColor,
       obscureText: isPassword,
       maxLines: maxLines,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         hintText: text,
         prefixIcon: Padding(
