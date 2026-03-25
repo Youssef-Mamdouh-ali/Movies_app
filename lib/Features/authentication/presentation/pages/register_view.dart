@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movies_app_project/Features/authentication/domain/entities/sign_up_request.dart';
+import 'package:movies_app_project/Features/language/presentation/manager/language_bloc.dart';
+import 'package:movies_app_project/Features/language/presentation/manager/language_event.dart';
+import 'package:movies_app_project/Features/language/presentation/manager/language_state.dart';
+import 'package:movies_app_project/core/l10n/app_localizations.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
 import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
 import 'package:movies_app_project/core/utils/extension/padding_extension.dart';
@@ -49,7 +53,8 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    
+    final appLocalizations = AppLocalizations.of(context)!;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SuccessSignUpState) {
@@ -74,7 +79,7 @@ class _RegisterViewState extends State<RegisterView> {
         return Scaffold(
           appBar: CustomAppBarWidget(
             customTitleWidget: Text(
-              AppString.register,
+              appLocalizations.register,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: AppColors.primaryColor,
               ),
@@ -114,14 +119,14 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   const SizedBox(height: 10),
-                  Text(AppString.avatar, style: theme.textTheme.bodyLarge),
+                  Text(appLocalizations.avatar, style: theme.textTheme.bodyLarge),
                   const SizedBox(height: 12),
 
                   // Name Field
                   CustomTextFormFieldWidget(
                     controller: _nameController,
                     validator: (value) => value!.isEmpty ? "Enter your name" : null,
-                    text: AppString.name,
+                    text: appLocalizations.name,
                     customPrefixWidget: SvgPicture.asset(
                       AppAssets.nameIcon,
                       width: 24,
@@ -134,7 +139,7 @@ class _RegisterViewState extends State<RegisterView> {
                   CustomTextFormFieldWidget(
                     controller: _emailController,
                     validator: (value) => value!.isEmpty ? "Enter your email" : null,
-                    text: AppString.email,
+                    text: appLocalizations.email,
                     customPrefixWidget: SvgPicture.asset(
                       AppAssets.emailIcon,
                       width: 24,
@@ -148,7 +153,7 @@ class _RegisterViewState extends State<RegisterView> {
                     controller: _passwordController,
                     isPassword: isActivePassword,
                     validator: (value) => value!.length < 6 ? "Password too short" : null,
-                    text: AppString.password,
+                    text: appLocalizations.password,
                     customPrefixWidget: SvgPicture.asset(
                       AppAssets.passwordIcon,
                       width: 24,
@@ -174,7 +179,7 @@ class _RegisterViewState extends State<RegisterView> {
                       }
                       return null;
                     },
-                    text: AppString.confirmPassword,
+                    text: appLocalizations.confirmPassword,
                     customPrefixWidget: SvgPicture.asset(
                       AppAssets.passwordIcon,
                       width: 24,
@@ -193,7 +198,7 @@ class _RegisterViewState extends State<RegisterView> {
                   // Phone Number Field
                   CustomTextFormFieldWidget(
                     controller: _phoneController,
-                    text: AppString.phoneNumber,
+                    text: appLocalizations.phoneNumber,
                     customPrefixWidget: SvgPicture.asset(
                       AppAssets.phoneIcon,
                       width: 24,
@@ -233,7 +238,7 @@ class _RegisterViewState extends State<RegisterView> {
                             ),
                           )
                               : Text(
-                            AppString.headerCreateAccount,
+                            appLocalizations.headerCreateAccount,
                             style: theme.textTheme.titleLarge?.copyWith(
                               color: AppColors.greyColor,
                             ),
@@ -252,7 +257,7 @@ class _RegisterViewState extends State<RegisterView> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: AppString.alreadyHaveAccount,
+                            text: appLocalizations.alreadyHaveAccount,
                             style: theme.textTheme.bodyMedium,
                           ),
                           WidgetSpan(
@@ -261,7 +266,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 Navigator.pushNamed(context, PagesRoutesName.loginView);
                               },
                               child: Text(
-                                "  ${AppString.login}",
+                                "  ${appLocalizations.login}",
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: AppColors.primaryColor,
                                 ),
@@ -275,19 +280,31 @@ class _RegisterViewState extends State<RegisterView> {
                   const SizedBox(height: 18),
 
                   // Language Switch
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomLanguageSwitchWidget(
-                        onTapLeft: () {
-                          if (isArabic) setState(() => isArabic = !isArabic);
-                        },
-                        onTapRight: () {
-                          if (!isArabic) setState(() => isArabic = !isArabic);
-                        },
-                        isArabic: isArabic,
-                      ),
-                    ],
+                  BlocBuilder<LanguageBloc, LanguageState>(
+                    builder: (context, langState) {
+                      bool isCurrentlyArabic = langState.locale.languageCode == 'ar';
+                      return Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomLanguageSwitchWidget(
+                              isArabic: isCurrentlyArabic,
+                              onTapLeft: () {
+                                if (isCurrentlyArabic) {
+                                  context.read<LanguageBloc>().add(ChangeLanguageEvent('en'));
+                                }
+                              },
+                              onTapRight: () {
+                                if (!isCurrentlyArabic) {
+                                  context.read<LanguageBloc>().add(ChangeLanguageEvent('ar'));
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ],
               ).setHorizontalAndVerticalPadding(

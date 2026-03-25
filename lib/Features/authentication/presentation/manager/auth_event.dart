@@ -27,3 +27,17 @@ class AuthenticationEventForgetPassword extends AuthenticationEvent {
   @override
   List<Object?> get props => [email];
 }
+
+
+class AuthenticationEventSignOut extends AuthenticationEvent {
+  @override
+  List<Object?> get props => [];
+
+}
+
+
+class AuthenticationEventGetUserData extends AuthenticationEvent {
+  const AuthenticationEventGetUserData();
+  @override
+  List<Object?> get props => [];
+}
