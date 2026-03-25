@@ -6,7 +6,6 @@ import 'package:movies_app_project/Features/home/presentation/bloc/home_state.da
 import 'package:movies_app_project/Features/home/presentation/widgets/custom_empty_list_widget.dart'; // ملف الـ Lottie الجديد
 import 'package:movies_app_project/Features/home/presentation/widgets/custom_movie_card.dart'; // الكارت الموحد
 import 'package:movies_app_project/core/l10n/app_localizations.dart';
-
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 import 'package:movies_app_project/core/widgets/custom_text_form_field_widget.dart';
@@ -27,10 +26,6 @@ class _SearchViewState extends State<SearchView> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Center(
-          child: CustomEmptyListWidget(),
-        ),
-        /*
         child: Column(
           children: [
 
@@ -112,8 +107,6 @@ class _SearchViewState extends State<SearchView> {
             ),
           ],
         ),
-
-         */
       ),
     );
   }

@@ -17,13 +17,13 @@ abstract class HomeRemoteDataSource {
   Future<MovieModel> getMovieDetails({required int movieId});
 
   Future<List<MovieModel>> getMovieSuggestions({required int movieId});
-/*
+
   Future<List<MovieModel>> searchMovies({
     required String queryTerm,
     int limit = 10,
     int page = 1,
   });
-*/
+
 
 }
 
@@ -171,7 +171,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       throw NetworkException(e.toString());
     }
   }
-/*
+
   @override
   Future<List<MovieModel>> searchMovies({
     required String queryTerm,
@@ -188,5 +188,5 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
     return _fetchMovies(uri);
   }
-*/
+
 }

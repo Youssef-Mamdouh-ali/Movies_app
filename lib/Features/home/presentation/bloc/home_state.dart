@@ -178,7 +178,7 @@ class HomeState {
   final CategoryMoviesState categoryState;
   final MovieDetailsState movieDetailsState;
   final MovieSuggestionsState suggestionsState;
-  //  final SearchState searchState;
+    final SearchState searchState;
   final WatchListState watchListState;
   final HistoryState historyState;
   const HomeState({
@@ -186,7 +186,7 @@ class HomeState {
     this.categoryState = const CategoryMoviesInitial(),
     this.movieDetailsState = const MovieDetailsInitialState(),
     this.suggestionsState = const MovieSuggestionsInitial(),
-   // this.searchState = const SearchMoviesInitial(),
+    this.searchState = const SearchMoviesInitial(),
     this.watchListState = const WatchListInitial(),
     this.historyState = const HistoryInitial(),
   });
@@ -196,7 +196,7 @@ class HomeState {
     CategoryMoviesState? categoryState,
     MovieDetailsState? movieDetailsState,
     MovieSuggestionsState? suggestionsState,
-  //  SearchState? searchState,
+    SearchState? searchState,
     WatchListState? watchListState,
     HistoryState? historyState,
   }) {
@@ -205,7 +205,7 @@ class HomeState {
       categoryState: categoryState ?? this.categoryState,
       movieDetailsState: movieDetailsState ?? this.movieDetailsState,
       suggestionsState: suggestionsState ?? this.suggestionsState,
-//      searchState: searchState ?? this.searchState,
+      searchState: searchState ?? this.searchState,
       watchListState: watchListState ?? this.watchListState,
       historyState: historyState ?? this.historyState,
     );

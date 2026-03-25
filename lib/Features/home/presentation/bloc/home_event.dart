@@ -33,12 +33,12 @@ class FetchMovieSuggestions extends HomeEvent {
 
 }
 
-/*
+
 class FetchSearchMovies extends HomeEvent {
   final String query;
   const FetchSearchMovies(this.query);
 }
-*/
+
 class FetchProfileData extends HomeEvent {
   const FetchProfileData();
 }

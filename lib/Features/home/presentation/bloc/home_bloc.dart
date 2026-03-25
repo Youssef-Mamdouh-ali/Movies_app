@@ -20,7 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetMovieDetailsUseCase getMovieDetailsUseCase;
 
   final GetMovieSuggestionsUseCase getMovieSuggestionsUseCase;
- // final SearchMoviesUseCase searchMoviesUseCase;
+  final SearchMoviesUseCase searchMoviesUseCase;
 
   final GetWatchListUseCase getWatchListUseCase;
   final AddToWatchListUseCase addToWatchListUseCase;
@@ -33,7 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required this.getMoviesByGenreUseCase,
     required this.getMovieDetailsUseCase,
     required this.getMovieSuggestionsUseCase,
-    //required this.searchMoviesUseCase,
+    required this.searchMoviesUseCase,
     required this.getWatchListUseCase,
     required this.addToWatchListUseCase,
     required this.removeFromWatchListUseCase,
@@ -46,7 +46,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchAllCategories>(_onFetchAllCategories);
     on<FetchMovieDetails>(_onFetchMovieDetails);
     on<FetchMovieSuggestions>(_onFetchMovieSuggestions);
-    //on<FetchSearchMovies>(_onFetchSearchMovies);
+    on<FetchSearchMovies>(_onFetchSearchMovies);
     on<FetchProfileData>(_onFetchProfileData);
     on<AddToWatchList>(_onAddToWatchList);
     on<RemoveFromWatchList>(_onRemoveFromWatchList);
@@ -172,7 +172,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
     );
   }
-/*
   Future<void> _onFetchSearchMovies(
     FetchSearchMovies event,
     Emitter<HomeState> emit,
@@ -196,7 +195,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           emit(state.copyWith(searchState: SearchMoviesSuccess(movies))),
     );
   }
-*/
   Future<void> _onFetchProfileData(
     FetchProfileData event,
     Emitter<HomeState> emit,
