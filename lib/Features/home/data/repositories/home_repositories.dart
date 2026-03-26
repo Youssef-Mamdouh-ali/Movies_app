@@ -24,13 +24,13 @@ abstract class HomeRepository {
   });
 
   Future<Either<Failure, List<MovieEntity>>> getMovieSuggestions({required int movieId});
-/*
+
   Future<Either<Failure, List<MovieEntity>>> searchMovies({
     required String queryTerm,
     int limit = 10,
     int page = 1,
   });
-*/
+
   Future<Either<Failure, List<MovieEntity>>> getWatchList();
   Future<Either<Failure, void>> addToWatchList(MovieEntity movie);
   Future<Either<Failure, void>> removeFromWatchList(int movieId);
@@ -126,7 +126,7 @@ class HomeRepositoryImpl implements HomeRepository {
       return Left(ServerFailure('Unexpected error: $e'));
     }
   }
-/*
+
   @override
   Future<Either<Failure, List<MovieEntity>>> searchMovies({
     required String queryTerm,
@@ -148,7 +148,7 @@ class HomeRepositoryImpl implements HomeRepository {
       return Left(ServerFailure('An error occurred while searching: $e'));
     }
   }
-*/
+
   @override
   Future<Either<Failure, void>> addToHistory(MovieEntity movie) async {
     try {

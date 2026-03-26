@@ -113,7 +113,7 @@ Future<void> initDependencies() async {
     () => GetMovieDetailsUseCase(sl()),
   );
   sl.registerLazySingleton(() => GetMovieSuggestionsUseCase(sl()));
-  // sl.registerLazySingleton(() => SearchMoviesUseCase(sl()));
+  sl.registerLazySingleton(() => SearchMoviesUseCase(sl()));
   sl.registerLazySingleton(() => GetWatchListUseCase(sl()));
   sl.registerLazySingleton(() => AddToWatchListUseCase(sl()));
   sl.registerLazySingleton(() => RemoveFromWatchListUseCase(sl()));
@@ -125,7 +125,7 @@ Future<void> initDependencies() async {
       getMoviesByGenreUseCase: sl(),
       getMovieDetailsUseCase: sl(),
       getMovieSuggestionsUseCase: sl(),
-    //  searchMoviesUseCase: sl(),
+      searchMoviesUseCase: sl(),
       getWatchListUseCase: sl(),
       addToWatchListUseCase: sl(),
       removeFromWatchListUseCase: sl(),

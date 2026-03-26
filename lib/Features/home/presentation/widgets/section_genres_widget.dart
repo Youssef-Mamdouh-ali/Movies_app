@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app_project/core/l10n/app_localizations.dart';
-import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 
 class SectionGenresWidget extends StatelessWidget {
