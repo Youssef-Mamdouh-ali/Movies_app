@@ -44,12 +44,12 @@ class _ProfileViewState extends State<ProfileView> {
           Navigator.pushNamedAndRemoveUntil(
             context,
             PagesRoutesName.loginView,
-                (route) => false,
+            (route) => false,
           );
         } else if (state is ErrorSignOutState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       child: DefaultTabController(
@@ -71,11 +71,17 @@ class _ProfileViewState extends State<ProfileView> {
 
                 return BlocBuilder<HomeBloc, HomeState>(
                   builder: (context, homeState) {
-                    final watchListCount = homeState.watchListState is WatchListSuccess
-                        ? (homeState.watchListState as WatchListSuccess).movies.length
+                    final watchListCount =
+                        homeState.watchListState is WatchListSuccess
+                        ? (homeState.watchListState as WatchListSuccess)
+                              .movies
+                              .length
                         : 0;
-                    final historyCount = homeState.historyState is HistorySuccess
-                        ? (homeState.historyState as HistorySuccess).movies.length
+                    final historyCount =
+                        homeState.historyState is HistorySuccess
+                        ? (homeState.historyState as HistorySuccess)
+                              .movies
+                              .length
                         : 0;
 
                     return Column(
@@ -101,9 +107,16 @@ class _ProfileViewState extends State<ProfileView> {
                           height: 60,
                           decoration: BoxDecoration(color: AppColors.greyColor),
                           child: CustomTabBarWidget(
-                            onTap: (index) => setState(() => selectedIndex = index),
-                            tabTitles: [appLocalizations.watchList, appLocalizations.history],
-                            tabIcons: [AppAssets.watchListIcon, AppAssets.folderIcon],
+                            onTap: (index) =>
+                                setState(() => selectedIndex = index),
+                            tabTitles: [
+                              appLocalizations.watchList,
+                              appLocalizations.history,
+                            ],
+                            tabIcons: [
+                              AppAssets.watchListIcon,
+                              AppAssets.folderIcon,
+                            ],
                           ),
                         ),
 
@@ -111,8 +124,12 @@ class _ProfileViewState extends State<ProfileView> {
                           child: IndexedStack(
                             index: selectedIndex,
                             children: const [
-                              CustomWatchListBodyWidget(),
-                              CustomHistoryListBodyWidget(),
+                              SingleChildScrollView(
+                                child: CustomWatchListBodyWidget(),
+                              ),
+                              SingleChildScrollView(
+                                child: CustomHistoryListBodyWidget(),
+                              ),
                             ],
                           ),
                         ),
