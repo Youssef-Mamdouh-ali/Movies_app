@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app_project/Features/authentication/presentation/manager/auth_bloc.dart';
+import 'package:movies_app_project/core/l10n/app_localizations.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 import 'package:movies_app_project/core/utils/theme/app_colors.dart';
 import 'package:movies_app_project/core/widgets/custom_elevated_button_widget.dart';
 
 class CustomHeaderContainerProfileWidget extends StatelessWidget {
   final String nameText;
-  final String imagePath;
+  final String imageUrl;
+  final int wishListCount;
+  final int historyCount;
   const CustomHeaderContainerProfileWidget({
     super.key,
     required this.nameText,
-    required this.imagePath,
+    required this.imageUrl,
+    required this.wishListCount,
+    required this.historyCount,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final appLocalizations = AppLocalizations.of(context)!;
     return Container(
-      height: 300,
       decoration: BoxDecoration(color: AppColors.greyColor),
       child: Padding(
         padding: const EdgeInsets.only(
@@ -27,6 +33,7 @@ class CustomHeaderContainerProfileWidget extends StatelessWidget {
           bottom: 20,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               children: [
@@ -34,7 +41,7 @@ class CustomHeaderContainerProfileWidget extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 59,
-                      backgroundImage: AssetImage(imagePath),
+                      backgroundImage: AssetImage(imageUrl),
                     ),
                     SizedBox(height: 15),
                     Text(nameText, style: theme.textTheme.titleLarge),
@@ -43,10 +50,10 @@ class CustomHeaderContainerProfileWidget extends StatelessWidget {
                 SizedBox(width: 46),
                 Column(
                   children: [
-                    Text("12", style: theme.textTheme.displayMedium),
+                    Text(wishListCount.toString(), style: theme.textTheme.displayMedium),
                     SizedBox(height: 20),
                     Text(
-                      AppString.wishList,
+                      appLocalizations.wishList,
                       style: theme.textTheme.headlineSmall,
                     ),
                   ],
@@ -54,10 +61,10 @@ class CustomHeaderContainerProfileWidget extends StatelessWidget {
                 SizedBox(width: 38),
                 Column(
                   children: [
-                    Text("10", style: theme.textTheme.displayMedium),
+                    Text(historyCount.toString(), style: theme.textTheme.displayMedium),
                     SizedBox(height: 20),
                     Text(
-                      AppString.history,
+                      appLocalizations.history,
                       style: theme.textTheme.headlineSmall,
                     ),
                   ],
@@ -77,7 +84,7 @@ class CustomHeaderContainerProfileWidget extends StatelessWidget {
                       );
                     },
                     customChildWidget: Text(
-                      AppString.editProfile,
+                      appLocalizations.editProfile,
                       style: theme.textTheme.titleLarge?.copyWith(
                         color: AppColors.darkColor,
                       ),
@@ -88,13 +95,15 @@ class CustomHeaderContainerProfileWidget extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: CustomElevatedButtonWidget(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(AuthenticationEventSignOut());
+                    },
                     backgroundColor: AppColors.redColor,
                     boarderColor: AppColors.redColor,
                     customChildWidget: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppString.exit, style: theme.textTheme.titleLarge),
+                        Text(appLocalizations.exit, style: theme.textTheme.titleLarge),
                         SizedBox(width: 5),
                         Icon(Icons.logout, color: AppColors.whiteColor),
                       ],

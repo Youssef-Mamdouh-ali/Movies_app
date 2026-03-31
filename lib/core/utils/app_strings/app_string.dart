@@ -30,4 +30,11 @@ class AppString {
   static const String watchList = "Watch List";
   static const String viewMore = "View more";
   static const String search = "Search";
+  static const String watch = "Watch";
+  static const String screenShots = "Screen Shots";
+  static const String similar = "Similar";
+  static const String summary = "Summary";
+  static const String cast = "Cast";
+  static const String genres = "Genres";
+  static const String character = "Character";
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:movies_app_project/core/l10n/app_localizations.dart';
 import 'package:movies_app_project/core/utils/app_assets/app_assets.dart';
 import 'package:movies_app_project/core/utils/app_strings/app_string.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
@@ -31,6 +32,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -46,7 +48,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: AppString.exploreNow,
+                    text: appLocalizations.exploreNow,
                     onPressed: () {
                       onNext(selectedPage);
                     },
@@ -63,7 +65,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 CustomScreen(
                   button: CustomElevatedButton(
-                    text: AppString.next,
+                    text: appLocalizations.next,
                     onPressed: () {
                       onNext(selectedPage);
                     },
