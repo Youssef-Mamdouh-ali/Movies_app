@@ -7,6 +7,8 @@ import 'package:movies_app_project/Features/home/domain/usecases/get_movie_sugge
 import 'package:movies_app_project/Features/home/domain/usecases/get_watch_list_use_case.dart';
 import 'package:movies_app_project/Features/home/domain/usecases/remove_from_watch_list_use_case.dart';
 import 'package:movies_app_project/Features/home/domain/usecases/search_movies_use_case.dart';
+import 'package:bloc/bloc.dart';
+
 import '../../../../core/utils/api/api_constants.dart';
 import '../../domain/entites/movie_entity.dart';
 import '../../domain/usecases/get_movies_by_genre_use_case.dart';

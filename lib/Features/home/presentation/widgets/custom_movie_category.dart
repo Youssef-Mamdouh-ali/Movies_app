@@ -56,7 +56,11 @@ class CustomMoviesCategory extends StatelessWidget {
               itemCount: movies.length,
               separatorBuilder: (_, _) => const SizedBox(width: 12),
               itemBuilder: (context, index) =>
-                  CustomMovieCard(movie: movies[index]),
+                  CustomMovieCard(movie: movies[index] ,
+                   /// TODO : Navigation
+                   // onTap: ,
+
+                  ),
             ),
           ),
         ],

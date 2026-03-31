@@ -64,6 +64,6 @@ class RemoteAuthDataSource implements AuthDataSource {
   }
   @override
   Future<void> signOut() async {
-    await _auth.signOut(); // ✅ خروج من Firebase
+    await _auth.signOut();
   }
 }

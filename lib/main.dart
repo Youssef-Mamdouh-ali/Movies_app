@@ -1,16 +1,37 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:movies_app_project/Features/language/presentation/manager/language_bloc.dart';
+import 'package:movies_app_project/Features/language/presentation/manager/language_event.dart';
+import 'package:movies_app_project/Features/language/presentation/manager/language_state.dart';
+import 'package:movies_app_project/core/services/loading_service.dart';
 import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 import 'package:movies_app_project/core/utils/theme/theme_manager.dart';
-import 'Features/home/presentation/screens/layout_view.dart';
+import 'Features/home/presentation/bloc/home_bloc.dart';
+import 'Features/home/presentation/bloc/home_event.dart';
+import 'core/l10n/app_localizations.dart';
 import 'core/services/service_locator.dart';
 import 'core/utils/router/app_router.dart';
+import 'firebase_options.dart';
 
-void main(){
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupServiceLocator();
 
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-  runApp(MyApp());
+    setupServiceLocator();
+    await initDependencies();
+    configLoading();
+
+    runApp(const MyApp());
+  } catch (e) {
+    debugPrint("Initialization Error: ${e.toString()}");
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -18,13 +39,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return MaterialApp(
-    title: "Movies App Project",
-    debugShowCheckedModeBanner: false,
-    theme: ThemeManager.themeData,
-    initialRoute: PagesRoutesName.layoutView,
-    onGenerateRoute: AppRouter.onGenerate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<HomeBloc>()..add(const HomeStarted()),
+        ),
+        BlocProvider(
+          create: (_) => sl<LanguageBloc>()..add( LoadSavedLanguageEvent()),
+        ),
+      ],
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: "Movies App",
+            debugShowCheckedModeBanner: false,
 
-  );
+            theme: ThemeManager.themeData,
+            locale: state.locale,
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+
+            initialRoute: PagesRoutesName.layoutView,
+            onGenerateRoute: AppRouter.onGenerate,
+
+            builder: (context, child) {
+              child = BotToastInit()(context, child);
+              child = EasyLoading.init()(context, child);
+              return child;
+            },
+
+            navigatorObservers: [BotToastNavigatorObserver()],
+          );
+        },
+      ),
+    );
   }
 }
