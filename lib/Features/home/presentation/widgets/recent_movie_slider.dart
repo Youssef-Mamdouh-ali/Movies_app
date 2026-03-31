@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app_project/core/utils/router/pages_routes_name.dart';
 
 import '../../domain/entites/movie_entity.dart';
 import 'custom_movie_card.dart';
@@ -56,7 +57,19 @@ class _RecentMoviesSliderState extends State<RecentMoviesSlider> {
             alignment: Alignment.center,
             child: CarouselSlider(
               items: featured
-                  .map((m) => CustomMovieCard(movie: m, inSlider: true))
+                  .map(
+                    (m) => CustomMovieCard(
+                      movie: m,
+                      inSlider: true,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          PagesRoutesName.movieDetailsView,
+                          arguments: m.id,
+                        );
+                      },
+                    ),
+                  )
                   .toList(),
               options: CarouselOptions(
                 height: MediaQuery.of(context).size.height * .42,
