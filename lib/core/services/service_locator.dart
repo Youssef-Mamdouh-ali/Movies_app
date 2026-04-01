@@ -1,41 +1,78 @@
 import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/adapters.dart';
-
+import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:movies_app_project/Features/authentication/data/data_source/auth_data_source.dart';
-import 'package:movies_app_project/Features/authentication/data/data_source/remote_auth_data_source.dart';
-import 'package:movies_app_project/Features/authentication/domain/repositories/auth_repository.dart';
-import 'package:movies_app_project/Features/authentication/domain/use_cases/forget_password_use_case.dart';
-import 'package:movies_app_project/Features/authentication/domain/use_cases/sign_in_use_case.dart';
-import 'package:movies_app_project/Features/authentication/domain/use_cases/sign_out_use_case.dart';
-import 'package:movies_app_project/Features/authentication/domain/use_cases/sign_up_use_case.dart';
-import 'package:movies_app_project/Features/authentication/presentation/manager/auth_bloc.dart';
-import 'package:movies_app_project/Features/home/data/data_sorces/home_local_data_source.dart';
-import 'package:movies_app_project/Features/home/data/model/movie_model.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/add_to_history_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/add_to_watch_list_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/get_history_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/get_movie_details_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/get_movie_suggestions_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/get_watch_list_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/remove_from_watch_list_use_case.dart';
-import 'package:movies_app_project/Features/home/domain/usecases/search_movies_use_case.dart';
-import 'package:movies_app_project/Features/language/data/data_sources/language_local_data_source.dart';
-import 'package:movies_app_project/Features/language/data/repository_imp/language_repository_imp.dart';
-import 'package:movies_app_project/Features/language/domain/repositories/language_repository.dart';
-import 'package:movies_app_project/Features/language/domain/use_cases/change_language_use_case.dart';
-import 'package:movies_app_project/Features/language/domain/use_cases/get_saved_language_use_case.dart';
-import 'package:movies_app_project/Features/language/presentation/manager/language_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Features/authentication/data/data_source/auth_data_source.dart';
+import '../../Features/authentication/data/data_source/remote_auth_data_source.dart';
 import '../../Features/authentication/data/repositories_imp/auth_repository_imp.dart';
+import '../../Features/authentication/domain/repositories/auth_repository.dart';
+import '../../Features/authentication/domain/use_cases/forget_password_use_case.dart';
+import '../../Features/authentication/domain/use_cases/sign_in_use_case.dart';
+import '../../Features/authentication/domain/use_cases/sign_out_use_case.dart';
+import '../../Features/authentication/domain/use_cases/sign_up_use_case.dart';
+import '../../Features/authentication/presentation/manager/auth_bloc.dart';
+import '../../Features/home/data/data_sorces/browse_source.dart';
+import '../../Features/home/data/data_sorces/home_local_data_source.dart';
 import '../../Features/home/data/data_sorces/home_remote_data_source.dart';
+import '../../Features/home/data/model/movie_model.dart';
 import '../../Features/home/data/repositories/home_repositories.dart';
+import '../../Features/home/data/repository_imp/browse_repository_impl.dart';
+import '../../Features/home/domain/repository/BrowseRepository.dart';
+import '../../Features/home/domain/use_cases/browse_use_case.dart';
+import '../../Features/home/domain/usecases/add_to_history_use_case.dart';
+import '../../Features/home/domain/usecases/add_to_watch_list_use_case.dart';
+import '../../Features/home/domain/usecases/get_history_use_case.dart';
+import '../../Features/home/domain/usecases/get_movie_details_use_case.dart';
+import '../../Features/home/domain/usecases/get_movie_suggestions_use_case.dart';
 import '../../Features/home/domain/usecases/get_movies_by_genre_use_case.dart';
 import '../../Features/home/domain/usecases/get_recent_movies_use_case.dart';
+import '../../Features/home/domain/usecases/get_watch_list_use_case.dart';
+import '../../Features/home/domain/usecases/remove_from_watch_list_use_case.dart';
+import '../../Features/home/domain/usecases/search_movies_use_case.dart';
 import '../../Features/home/presentation/bloc/home_bloc.dart';
+import '../../Features/home/presentation/manger/layout_bloc.dart';
+import '../../Features/language/data/data_sources/language_local_data_source.dart';
+import '../../Features/language/data/repository_imp/language_repository_imp.dart';
+import '../../Features/language/domain/repositories/language_repository.dart';
+import '../../Features/language/domain/use_cases/change_language_use_case.dart';
+import '../../Features/language/domain/use_cases/get_saved_language_use_case.dart';
+import '../../Features/language/presentation/manager/language_bloc.dart';
+import '../network_handler/api_manger/ApiManager.dart';
 
 final sl = GetIt.instance;
+
+void setupBrowseDependencies() {
+
+  /// Dio
+  sl.registerLazySingleton(() => Dio());
+
+  /// 🔥 لازم تضيف ده
+  sl.registerLazySingleton(() => ApiManager(sl()));
+
+  /// DataSource
+  sl.registerLazySingleton<BrowseRemoteDataSource>(
+        () => BrowseRemoteDataSourceImpl(sl()),
+  );
+
+  /// Repository
+  sl.registerLazySingleton<BrowseRepository>(
+        () => BrowseRepositoryImpl(sl()),
+  );
+
+  /// UseCase
+  sl.registerLazySingleton<GetMovies>(
+        () => GetMovies(sl()),
+  );
+
+  /// Bloc
+  sl.registerFactory<LayoutBloc>(
+        () => LayoutBloc(sl()),
+  );
+}
+
 
 void setupServiceLocator() {
   // 1. Data Source

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../domain/entites/browse_entities.dart';
 import '../../domain/use_cases/browse_use_case.dart';
