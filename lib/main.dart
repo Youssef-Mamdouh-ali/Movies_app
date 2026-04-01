@@ -25,6 +25,8 @@ void main() async {
     );
 
     setupServiceLocator();
+    setupBrowseDependencies();
+
     await initDependencies();
     configLoading();
 
