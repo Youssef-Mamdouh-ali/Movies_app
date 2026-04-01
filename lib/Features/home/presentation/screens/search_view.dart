@@ -28,7 +28,6 @@ class _SearchViewState extends State<SearchView> {
       body: SafeArea(
         child: Column(
           children: [
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 21),
               child: CustomTextFormFieldWidget(
@@ -48,10 +47,8 @@ class _SearchViewState extends State<SearchView> {
               ),
             ),
 
-
             Expanded(
               child: BlocBuilder<HomeBloc, HomeState>(
-
                 buildWhen: (previous, current) =>
                     previous.searchState != current.searchState,
                 builder: (context, state) {
@@ -94,8 +91,7 @@ class _SearchViewState extends State<SearchView> {
                           Navigator.pushNamed(
                             context,
                             PagesRoutesName.movieDetailsView,
-                            arguments: movies[index]
-                                .id,
+                            arguments: movies[index].id,
                           );
                         },
                       ),
